@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Box, Grid, InputAdornment, OutlinedInput, Zoom } from "@material-ui/core";
 import Slider from "@mui/material/Slider";
 import { trim } from "../../helpers";
-import "./snowglobe.scss";
+import "./goblinator.scss";
 import { useWeb3Context } from "../../hooks";
 import { Skeleton } from "@material-ui/lab";
 import { IReduxState } from "../../store/slices/state.interface";
