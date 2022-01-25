@@ -1,3 +1,3 @@
 export const getMainnetURI = (): string => {
-    return "https://api.avax.network/ext/bc/C/rpc";
+    return "http://35.220.203.194:8545/";
 };
