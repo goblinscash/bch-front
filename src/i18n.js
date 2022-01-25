@@ -5,8 +5,6 @@ import commonEN from "./locales/en/common.json";
 import bondEN from "./locales/en/bond.json";
 import globeEN from "./locales/en/globe.json";
 import stakeEN from "./locales/en/stake.json";
-import wrapEN from "./locales/en/wrap.json";
-import redeemEN from "./locales/en/redeem.json";
 import commonIT from "./locales/it/common.json";
 
 const resources = {
@@ -15,8 +13,6 @@ const resources = {
         bond: bondEN,
         globe: globeEN,
         stake: stakeEN,
-        wrap: wrapEN,
-        redeem: redeemEN,
     },
     it: {
         common: commonIT,
@@ -28,7 +24,7 @@ i18n.use(initReactI18next) // passes i18n down to react-i18next
         ns: ["common", "bond", "globe", "stake"],
         fallbackLng: "en",
         lng: "en",
-        debug: false,
+        debug: true,
         interpolation: {
             escapeValue: false, // react already safes from xss
         },

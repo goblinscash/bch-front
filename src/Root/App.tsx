@@ -9,8 +9,7 @@ import { IReduxState } from "../store/slices/state.interface";
 import Loading from "../components/Loader";
 import useBonds from "../hooks/bonds";
 import ViewBase from "../components/ViewBase";
-import { Stake, Goblinator, ChooseBond, Bond, Dashboard, NotFound, Redeem, Wrap } from "../views";
-
+import { Stake, Snowglobe, ChooseBond, Bond, Dashboard, NotFound } from "../views";
 import "./style.scss";
 import useTokens from "../hooks/tokens";
 
@@ -113,23 +112,11 @@ function App() {
                 </Route>
 
                 <Route exact path="/">
-                    <Redirect to="/stake" />
+                    <Redirect to="/dashboard" />
                 </Route>
 
                 <Route path="/stake">
                     <Stake />
-                </Route>
-
-                <Route path="/wrap">
-                    <Wrap />
-                </Route>
-
-                <Route path="/redeem">
-                    <Redeem />
-                </Route>
-
-                <Route path="/goblinator">
-                    <Goblinator />
                 </Route>
 
                 <Route path="/mints">

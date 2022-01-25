@@ -1,15 +1,6 @@
 {
-    "MintTitle": "Turbines",
-    "MintInactiveTitle": "Retired Turbines",
+    "MintTitle": "Mint (1,1)",
     "ChooseToken": "Choose token",
-    "ZapinAndMint": "Zapin & Mint",
-    "ZapinApproveToken": "Approve {{token}}",
-    "ZapinToken": "Zapin {{token}}",
-    "ZapinHelpText": {
-        "FirstRow": "Note: The \"Approve\" transaction is only needed when bonding for the first time",
-        "SecondRow": "for each token; subsequent bonding only requires you to perform the",
-        "ThirdRow": "\"zapin&mint\" transaction."
-    },
     "TXSettings": "TX Settings",
     "DestinationToken": "Destination token",
     "SlippageTolerance": "Slippage Tolerance",
@@ -18,7 +9,6 @@
     "MintPrice": "Mint Price",
     "Mint": "Mint",
     "MintBond": "Mint {{bond}}",
-    "RedeemBond": "Redeem {{bond}}",
     "Redeem": "Redeem",
     "Settings": "Settings",
     "Slippage": "Slippage",
@@ -37,7 +27,7 @@
     "ClaimableRewards": "Claimable Rewards",
     "TimeFullyVested": "Time until fully vested",
     "ViewContract": "View Contract",
-    "Purchased": "Locked",
+    "Purchased": "Purchased",
     "FullyVested": "Fully Vested",
     "ApprovingBond": "Approving {{bond}}",
     "BondingBond": "Bonding {{bond}}",

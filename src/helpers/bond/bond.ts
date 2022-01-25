@@ -12,7 +12,6 @@ export interface BondOpts {
     readonly bondContractABI: ContractInterface; // ABI for contract
     readonly networkAddrs: NetworkAddresses; // Mapping of network --> Addresses
     readonly bondToken: string; // Unused, but native token to buy the bond.
-    readonly isActive: boolean; // Set to false to disable mint
 }
 
 export abstract class Bond {
@@ -24,7 +23,6 @@ export abstract class Bond {
     public readonly networkAddrs: NetworkAddresses;
     public readonly bondToken: string;
     public readonly lpUrl?: string;
-    public readonly isActive?: boolean;
 
     // The following two fields will differ on how they are set depending on bond type
     public abstract isLP: boolean;
@@ -34,7 +32,7 @@ export abstract class Bond {
     // Async method that returns a Promise
     public abstract getTreasuryBalance(networkID: Networks, provider: StaticJsonRpcProvider): Promise<number>;
     public abstract getTokenAmount(networkID: Networks, provider: StaticJsonRpcProvider): Promise<number>;
-    public abstract getSbAmount(networkID: Networks, provider: StaticJsonRpcProvider): Promise<number>;
+    public abstract getGobAmount(networkID: Networks, provider: StaticJsonRpcProvider): Promise<number>;
 
     constructor(type: BondType, bondOpts: BondOpts) {
         this.name = bondOpts.name;
@@ -44,7 +42,6 @@ export abstract class Bond {
         this.bondContractABI = bondOpts.bondContractABI;
         this.networkAddrs = bondOpts.networkAddrs;
         this.bondToken = bondOpts.bondToken;
-        this.isActive = bondOpts.isActive;
     }
 
     public getAddressForBond(networkID: Networks) {

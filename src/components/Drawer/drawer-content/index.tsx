@@ -109,15 +109,15 @@ function NavContent() {
                         </div>
                     </Link>
 
-                      <Link component={NavLink} to="/goblinator" className="button-dapp-menu">
+                    {/*  <Link component={NavLink} to="/snowglobe" className="button-dapp-menu">
                         <div className="button-dapp-menu">
                             <div className="dapp-menu-item">
                                 <img alt="" src={Snowglobe} />
-                                <p>{t("Goblinator")}</p>
+                                <p>{t("Snowglobe")}</p>
                             </div>
                         </div>
                     </Link>
-                    
+                    */}
 
                     {/* <Link component={NavLink} id="bond-nav" to="#" className="button-dapp-menu">
                         <div className="dapp-menu-item">

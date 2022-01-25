@@ -24,11 +24,9 @@ export const loadAppDetails = createAsyncThunk(
         const ohmAmount = 1512.12854088 * ohmPrice;
 
         const stakingContract = new ethers.Contract(addresses.STAKING_ADDRESS, StakingContract, provider);
-																									   
         const currentBlock = await provider.getBlockNumber();
         const currentBlockTime = (await provider.getBlock(currentBlock)).timestamp;
         const sgobContract = new ethers.Contract(addresses.SGOB_ADDRESS, MemoTokenContract, provider);
-																								  
         const gobContract = new ethers.Contract(addresses.GOB_ADDRESS, TimeTokenContract, provider);
 
         const marketPrice = ((await getMarketPrice(networkID, provider)) / Math.pow(10, 9)) * fusdPrice;
@@ -38,10 +36,6 @@ export const loadAppDetails = createAsyncThunk(
 
         const stakingTVL = circSupply * marketPrice;
         const marketCap = totalSupply * marketPrice;
-
-																								 
-																									  
-																											  
 
         const tokenBalPromises = allBonds.map(bond => bond.getTreasuryBalance(networkID, provider));
         const tokenBalances = await Promise.all(tokenBalPromises);
@@ -57,16 +51,6 @@ export const loadAppDetails = createAsyncThunk(
         const gobSupply = totalSupply - gobAmount;
 
         const rfv = treasuryBalance / totalSupply;
-																									 
-
-																																					
-																		 
-
-																																							 
-																
-
-															
-																	  
 
         const epoch = await stakingContract.epoch();
         const stakingReward = epoch.distribute;
@@ -77,7 +61,7 @@ export const loadAppDetails = createAsyncThunk(
 
         const currentIndex = await stakingContract.index();
         //nj - was endTime
-        const nextRebase = epoch.endTime;
+        const nextRebase = epoch.endBlock;
 
         const treasuryRunway = rfvTreasury / circSupply;
         const runway = Math.log(treasuryRunway) / Math.log(1 + stakingRebase) / 3;
@@ -94,14 +78,10 @@ export const loadAppDetails = createAsyncThunk(
             stakingTVL,
             stakingRebase,
             marketPrice,
-								
             currentBlockTime,
             nextRebase,
             rfv,
             runway,
-					  
-						 
-							   
         };
     },
 );
@@ -114,7 +94,6 @@ export interface IAppSlice {
     loading: boolean;
     stakingTVL: number;
     marketPrice: number;
-								
     marketCap: number;
     circSupply: number;
     currentIndex: string;
@@ -129,9 +108,6 @@ export interface IAppSlice {
     totalSupply: number;
     rfv: number;
     runway: number;
-					  
-						 
-							   
 }
 
 const appSlice = createSlice({
