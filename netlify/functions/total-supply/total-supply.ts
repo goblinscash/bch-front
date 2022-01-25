@@ -1,9 +1,9 @@
 import { Handler } from "@netlify/functions";
 import ethers from "ethers";
 
-const provider = new ethers.providers.JsonRpcProvider("https://api.avax.network/ext/bc/C/rpc", 0xa86a);
+const provider = new ethers.providers.JsonRpcProvider("https://moeing.tech:9545/", 10001);
 
-const address = "0x7d1232b90d3f809a54eeaeebc639c62df8a8942f";
+const address = "0xA0726C3cb033EBb69265819F663984a2F059dea1";
 
 const abi = [
     { inputs: [], stateMutability: "nonpayable", type: "constructor" },
