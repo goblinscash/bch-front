@@ -4,10 +4,10 @@ export const prettifySeconds = (seconds?: number, resolution?: string) => {
     if (seconds !== 0 && !seconds) {
         return "";
     }
-    // seconds are divided by 720 instead of 3600 due to smartBCH having 5sec blocks
-    const d = Math.floor(seconds / (720 * 24));
-    const h = Math.floor((seconds % (720 * 24)) / 3600);
-    const m = Math.floor((seconds % 720) / 60);
+
+    const d = Math.floor(seconds / (3600 * 24));
+    const h = Math.floor((seconds % (3600 * 24)) / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
 
     if (resolution === "day") {
         return d + ` ${i18n.t("day", { count: d })}`;
