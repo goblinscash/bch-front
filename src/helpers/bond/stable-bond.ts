@@ -33,7 +33,7 @@ export class StableBond extends Bond {
         return this.getTreasuryBalance(networkID, provider);
     }
 
-    public getSbAmount(networkID: Networks, provider: StaticJsonRpcProvider) {
+    public getGobAmount(networkID: Networks, provider: StaticJsonRpcProvider) {
         return new Promise<number>(reserve => reserve(0));
     }
 }

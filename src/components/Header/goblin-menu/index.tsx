@@ -2,11 +2,9 @@ import { useState } from "react";
 import { getAddresses, TOKEN_DECIMALS, DEFAULD_NETWORK } from "../../../constants";
 import { useSelector } from "react-redux";
 import { Link, Fade, Popper } from "@material-ui/core";
-import "./snowbank-menu.scss";
+import "./gob-menu.scss";
 import { IReduxState } from "../../../store/slices/state.interface";
 import { getTokenUrl } from "../../../helpers";
-
-import { useTranslation } from "react-i18next";
 
 const addTokenToWallet = (tokenSymbol: string, tokenAddress: string) => async () => {
     const tokenImage = getTokenUrl(tokenSymbol.toLowerCase());
@@ -31,9 +29,7 @@ const addTokenToWallet = (tokenSymbol: string, tokenAddress: string) => async ()
     }
 };
 
-function SnowbankMenu() {
-    const { t } = useTranslation();
-
+function GobMenu() {
     const [anchorEl, setAnchorEl] = useState(null);
     const isEthereumAPIAvailable = window.ethereum;
 
@@ -43,8 +39,8 @@ function SnowbankMenu() {
 
     const addresses = getAddresses(networkID);
 
-    const SSB_ADDRESS = addresses.SSB_ADDRESS;
-    const SB_ADDRESS = addresses.SB_ADDRESS;
+    const SGOB_ADDRESS = addresses.SGOB_ADDRESS;
+    const GOB_ADDRESS = addresses.GOB_ADDRESS;
 
     const handleClick = (event: any) => {
         setAnchorEl(anchorEl ? null : event.currentTarget);
@@ -53,33 +49,29 @@ function SnowbankMenu() {
     const open = Boolean(anchorEl);
 
     return (
-        <div className="sb-menu-root" onMouseEnter={e => handleClick(e)} onMouseLeave={e => handleClick(e)}>
-            <div className="sb-menu-btn">
-                <p>{t("BuySB")}</p>
+        <div className="gob-menu-root" onMouseEnter={e => handleClick(e)} onMouseLeave={e => handleClick(e)}>
+            <div className="gob-menu-btn">
+                <p>$GOB</p>
             </div>
 
-            <Popper className="sb-menu-popper" open={open} anchorEl={anchorEl} transition>
+            <Popper className="gob-menu-popper" open={open} anchorEl={anchorEl} transition>
                 {({ TransitionProps }) => (
                     <Fade {...TransitionProps} timeout={200}>
                         <div className="tooltip">
-                            <Link
-                                className="tooltip-item"
-                                href={`https://www.traderjoexyz.com/#/trade?inputCurrency=0x130966628846bfd36ff31a822705796e8cb8c18d&outputCurrency=${SB_ADDRESS}`}
-                                target="_blank"
-                            >
-                                <p>{t("BuyOnTraderJoe")}</p>
+                            <Link className="tooltip-item" href={`https://app.mistswap.fi/swap?outputCurrency=${GOB_ADDRESS}`} target="_blank">
+                                <p>Buy on MistSwap</p>
                             </Link>
 
                             {isEthereumAPIAvailable && (
                                 <div className="add-tokens">
                                     <div className="divider" />
-                                    <p className="add-tokens-title">{t("AddTokenToWallet")}</p>
+                                    <p className="add-tokens-title">ADD TOKEN TO WALLET</p>
                                     <div className="divider" />
-                                    <div className="tooltip-item" onClick={addTokenToWallet("SB", SB_ADDRESS)}>
-                                        <p>↑ SB</p>
+                                    <div className="tooltip-item" onClick={addTokenToWallet("GOB", GOB_ADDRESS)}>
+                                        <p>GOB</p>
                                     </div>
-                                    <div className="tooltip-item" onClick={addTokenToWallet("sSB", SSB_ADDRESS)}>
-                                        <p>↑ sSB</p>
+                                    <div className="tooltip-item" onClick={addTokenToWallet("SGOB", SGOB_ADDRESS)}>
+                                        <p>sGOB</p>
                                     </div>
                                 </div>
                             )}
@@ -91,4 +83,4 @@ function SnowbankMenu() {
     );
 }
 
-export default SnowbankMenu;
+export default GobMenu;

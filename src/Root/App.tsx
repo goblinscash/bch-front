@@ -128,8 +128,8 @@ function App() {
                     <Redeem />
                 </Route>
 
-                <Route path="/snowglobe">
-                    <Snowglobe />
+                <Route path="/goblinator">
+                    <Goblinator />
                 </Route>
 
                 <Route path="/mints">

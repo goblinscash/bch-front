@@ -22,8 +22,8 @@
   .bond-card {
     max-width: 803px;
     min-height: 605px;
-    background: rgba(0, 1, 40, 0.9);
-    border: 1px solid #30363a;
+    background: rgba(40, 1, 0, 0.77);
+    border: 1px solid #4a8938;
     backdrop-filter: blur(100px);
     border-radius: 4px;
     padding: 20px;
@@ -104,7 +104,7 @@
     max-width: 408px;
     margin: 5px;
 
-    .avax-checkbox {
+    .bch-checkbox {
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -205,20 +205,20 @@
   }
 
   .bond-approve-btn {
-    background: #D0C4FF;
+    background: #4a8938;
     border-radius: 4px;
     padding: 14px 0px;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid #441D91;
+    border: 1px solid #fff2c4;
 
     p {
       font-family: Montserrat Medium;
       font-weight: 500;
       font-size: 16px;
-      color: #441D91;
+      color: #FFFFFF;
     }
   }
 

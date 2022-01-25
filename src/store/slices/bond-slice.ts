@@ -10,7 +10,7 @@ import { Bond } from "../../helpers/bond/bond";
 import { Networks } from "../../constants/blockchain";
 import { getBondCalculator } from "../../helpers/bond-calculator";
 import { RootState } from "../store";
-import { avaxSb, wavax } from "../../helpers/bond";
+import { fusdGob, fusd } from "../../helpers/bond";
 import { error, warning, success, info } from "../slices/messages-slice";
 import { messages } from "../../constants/messages";
 import { getGasPrice } from "../../helpers/get-gas-price";
@@ -47,7 +47,7 @@ export const changeApproval = createAsyncThunk("bonding/changeApproval", async (
             }),
         );
         await approveTx.wait();
-        dispatch(success({ text: messages.tx_successfully_send }));
+        dispatch(success({ text: messages.tx_successfully_sent }));
     } catch (err: any) {
         metamaskErrorWrap(err, dispatch);
     } finally {
@@ -114,15 +114,15 @@ export const calcBondDetails = createAsyncThunk("bonding/calcBondDetails", async
 
     let marketPrice = await getMarketPrice(networkID, provider);
 
-    const mimPrice = getTokenPrice("MIM");
-    marketPrice = (marketPrice / Math.pow(10, 9)) * mimPrice;
+    const fusdPrice = getTokenPrice("fUSD");
+    marketPrice = (marketPrice / Math.pow(10, 9)) * fusdPrice;
 
     try {
         bondPrice = await bondContract.bondPriceInUSD();
 
-        if (bond.name === avaxSb.name) {
-            const avaxPrice = getTokenPrice("AVAX");
-            bondPrice = bondPrice * avaxPrice;
+        if (bond.name === fusdGob.name) {
+            const bchPrice = getTokenPrice("fUSD");
+            bondPrice = bondPrice * bchPrice;
         }
 
         bondDiscount = (marketPrice * Math.pow(10, 18) - bondPrice) / bondPrice;
@@ -164,14 +164,22 @@ export const calcBondDetails = createAsyncThunk("bonding/calcBondDetails", async
         purchased = await bondCalcContract.valuation(assetAddress, purchased);
         purchased = (markdown / Math.pow(10, 18)) * (purchased / Math.pow(10, 9));
 
-        if (bond.name === avaxSb.name) {
-            const avaxPrice = getTokenPrice("AVAX");
-            purchased = purchased * avaxPrice;
+        if (bond.name === fusdGob.name) {
+            const fusdPrice = getTokenPrice("fUSD");
+            purchased = purchased * fusdPrice;
         }
-    } else if (bond.name === wavax.name) {
+        if (bond.name === gob.name) {
+            const fusdPrice = getTokenPrice("fUSD");
+            purchased = purchased * fusdPrice;
+        }
+        if (bond.name === fusdBch.name) {
+            const fusdPrice = getTokenPrice("fUSD");
+            purchased = purchased * fusdPrice;
+        }
+    } else if (bond.name === fusd.name) {
         purchased = purchased / Math.pow(10, 18);
-        const avaxPrice = getTokenPrice("AVAX");
-        purchased = purchased * avaxPrice;
+        const fusdPrice = getTokenPrice("fUSD");
+        purchased = purchased * fusdPrice;
     } else {
         purchased = purchased / Math.pow(10, 18);
     }
@@ -196,9 +204,9 @@ interface IBondAsset {
     networkID: Networks;
     provider: StaticJsonRpcProvider | JsonRpcProvider;
     slippage: number;
-    useAvax: boolean;
+    useBch: boolean;
 }
-export const bondAsset = createAsyncThunk("bonding/bondAsset", async ({ value, address, bond, networkID, provider, slippage, useAvax }: IBondAsset, { dispatch }) => {
+export const bondAsset = createAsyncThunk("bonding/bondAsset", async ({ value, address, bond, networkID, provider, slippage, useBch }: IBondAsset, { dispatch }) => {
     const depositorAddress = address;
     const acceptedSlippage = slippage / 100 || 0.005;
     const valueInWei = ethers.utils.parseUnits(value, "ether");
@@ -212,7 +220,7 @@ export const bondAsset = createAsyncThunk("bonding/bondAsset", async ({ value, a
     try {
         const gasPrice = await getGasPrice(provider);
 
-        if (useAvax) {
+        if (useBch) {
             bondTx = await bondContract.deposit(valueInWei, maxPremium, depositorAddress, { value: valueInWei, gasPrice });
         } else {
             bondTx = await bondContract.deposit(valueInWei, maxPremium, depositorAddress, { gasPrice });
@@ -225,7 +233,7 @@ export const bondAsset = createAsyncThunk("bonding/bondAsset", async ({ value, a
             }),
         );
         await bondTx.wait();
-        dispatch(success({ text: messages.tx_successfully_send }));
+        dispatch(success({ text: messages.tx_successfully_sent }));
         dispatch(info({ text: messages.your_balance_update_soon }));
         await sleep(10);
         await dispatch(calculateUserBondDetails({ address, bond, networkID, provider }));
@@ -271,7 +279,7 @@ export const redeemBond = createAsyncThunk("bonding/redeemBond", async ({ addres
             }),
         );
         await redeemTx.wait();
-        dispatch(success({ text: messages.tx_successfully_send }));
+        dispatch(success({ text: messages.tx_successfully_sent }));
         await sleep(0.01);
         dispatch(info({ text: messages.your_balance_update_soon }));
         await sleep(10);

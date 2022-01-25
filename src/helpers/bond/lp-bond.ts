@@ -44,7 +44,7 @@ export class LPBond extends Bond {
         return this.getReserves(networkID, provider, true);
     }
 
-    public getSbAmount(networkID: Networks, provider: StaticJsonRpcProvider) {
+    public getGobAmount(networkID: Networks, provider: StaticJsonRpcProvider) {
         return this.getReserves(networkID, provider, false);
     }
 
@@ -55,13 +55,13 @@ export class LPBond extends Bond {
 
         let [reserve0, reserve1] = await token.getReserves();
         const token1: string = await token.token1();
-        const isSb = token1.toLowerCase() === addresses.SB_ADDRESS.toLowerCase();
+        const isGob = token1.toLowerCase() === addresses.GOB_ADDRESS.toLowerCase();
 
-        return isToken ? this.toTokenDecimal(false, isSb ? reserve0 : reserve1) : this.toTokenDecimal(true, isSb ? reserve1 : reserve0);
+        return isToken ? this.toTokenDecimal(false, isGob ? reserve0 : reserve1) : this.toTokenDecimal(true, isGob ? reserve1 : reserve0);
     }
 
-    private toTokenDecimal(isSb: boolean, reserve: number) {
-        return isSb ? reserve / Math.pow(10, 9) : reserve / Math.pow(10, 18);
+    private toTokenDecimal(isGob: boolean, reserve: number) {
+        return isGob ? reserve / Math.pow(10, 9) : reserve / Math.pow(10, 18);
     }
 }
 

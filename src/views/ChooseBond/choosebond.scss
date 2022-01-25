@@ -11,21 +11,21 @@
 
   .choose-bond-view-card{
     border-radius: 4px;
-    border: 1px solid #30363a;
+    border: 1px solid #4a8938;
     padding: 20px;
     width: 100%;
 
     position: relative;
     z-index: 2;
-    
+
     @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
-      background: rgba(0, 1, 40, 0.5);
+      background: rgba(40, 1, 0, 0.77);
       backdrop-filter: blur(100px);
     }
-  
+
     /* slightly transparent fallback for Firefox (not supporting backdrop-filter) */
     @supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
-      background: rgba(0, 1, 40, 0.9);
+      background: rgba(40, 1, 0, 0.9);
     }
 
     .choose-bond-view-card-header{
@@ -42,7 +42,7 @@
 
     .choose-bond-view-card-metrics{
       margin: 30px 0;
-      
+
       .choose-bond-view-card-metrics-title{
         font-family: Montserrat;
         font-weight: 400;
@@ -51,7 +51,7 @@
         padding-bottom: 6px;
         font-feature-settings: "ss01";
       }
-    
+
       .choose-bond-view-card-metrics-value{
         font-family: Montserrat SemiBold;
         font-weight: 500;
@@ -73,17 +73,12 @@
     }
   }
 
-  .inactive-view-card {
-    margin-top: 20px;
-  }
-
   .MuiTableRow-root td:first-child {
     height: 100%;
   }
 
   .choose-bond-view-card-container{
     margin-top: 16px;
-    width: 100%;
 
     .bond-data-card {
       margin: auto !important;
@@ -115,11 +110,11 @@
         justify-content: space-between;
         flex-direction: row;
         margin: 12px 0;
-  
+
         .bond-price {
           display: flex;
           align-items: center;
-  
+
           svg {
             margin-right: 5px;
           }
@@ -149,8 +144,8 @@
   }
 
   .bond-table-btn{
-    background: #C3F53C;
-    border: 1px solid #2E1D5C;
+    background: #4a8938;
+    border: 1px solid #855c04;
     border-radius: 4px;
     padding: 8px 35.5px;
     text-align: center;
@@ -158,12 +153,12 @@
     &:hover{
       border: 1px solid rgba(255, 255, 255, 0.6);
     }
-  
+
     p{
       font-family: Montserrat Medium;
       font-weight: 500;
       font-size: 16px;
-      color: #2E1D5C;
+      color: #FFFFFF;
     }
   }
 

@@ -33,20 +33,17 @@ function Stake() {
     const fiveDayRate = useSelector<IReduxState, number>(state => {
         return state.app.fiveDayRate;
     });
-    const sbBalance = useSelector<IReduxState, string>(state => {
-        return state.account.balances && state.account.balances.sb;
+    const gobBalance = useSelector<IReduxState, string>(state => {
+        return state.account.balances && state.account.balances.gob;
     });
-    const ssbBalance = useSelector<IReduxState, string>(state => {
-        return state.account.balances && state.account.balances.ssb;
-    });
-    const wssbBalance = useSelector<IReduxState, string>(state => {
-        return state.account.balances && state.account.balances.wssb;
+    const sgobBalance = useSelector<IReduxState, string>(state => {
+        return state.account.balances && state.account.balances.sgob;
     });
     const stakeAllowance = useSelector<IReduxState, number>(state => {
-        return state.account.staking && state.account.staking.sb;
+        return state.account.staking && state.account.staking.gob;
     });
     const unstakeAllowance = useSelector<IReduxState, number>(state => {
-        return state.account.staking && state.account.staking.ssb;
+        return state.account.staking && state.account.staking.sgob;
     });
     const stakingRebase = useSelector<IReduxState, number>(state => {
         return state.app.stakingRebase;
@@ -64,9 +61,9 @@ function Stake() {
 
     const setMax = () => {
         if (view === 0) {
-            setQuantity(sbBalance);
+            setQuantity(gobBalance);
         } else {
-            setQuantity(ssbBalance);
+            setQuantity(sgobBalance);
         }
     };
 
@@ -88,8 +85,8 @@ function Stake() {
 
     const hasAllowance = useCallback(
         token => {
-            if (token === "sb") return stakeAllowance > 0;
-            if (token === "ssb") return unstakeAllowance > 0;
+            if (token === "gob") return stakeAllowance > 0;
+            if (token === "sgob") return unstakeAllowance > 0;
             return 0;
         },
         [stakeAllowance],
@@ -100,51 +97,30 @@ function Stake() {
         setQuantity("");
     };
 
-    const trimmedSSBBalance = trim(Number(ssbBalance), 6);
-    const trimmedWrappedStakedSBBalance = trim(Number(wssbBalance), 6);
+    const trimmedSGOBBalance = trim(Number(sgobBalance), 6);
     const trimmedStakingAPY = trim(stakingAPY * 100, 1);
     const stakingRebasePercentage = trim(stakingRebase * 100, 4);
-    const nextRewardValue = trim((Number(stakingRebasePercentage) / 100) * Number(trimmedSSBBalance), 6);
-    const wrappedTokenEquivalent = trim(Number(trimmedWrappedStakedSBBalance) * Number(currentIndex), 6);
-    const effectiveNextRewardValue = trim(Number(Number(nextRewardValue) + (Number(stakingRebasePercentage) / 100) * Number(wrappedTokenEquivalent)), 6);
-    const valueOfSB = new Intl.NumberFormat("en-US", {
+    const nextRewardValue = trim((Number(stakingRebasePercentage) / 100) * Number(trimmedSGOBBalance), 6);
+    const valueOfGOB = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
         maximumFractionDigits: 2,
         minimumFractionDigits: 2,
-    }).format(Number(sbBalance) * app.marketPrice);
+    }).format(Number(gobBalance) * app.marketPrice);
     const valueOfStakedBalance = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
         maximumFractionDigits: 2,
         minimumFractionDigits: 2,
-    }).format(Number(trimmedSSBBalance) * app.marketPrice);
-    const valueOfWrappedStakedBalance = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-        maximumFractionDigits: 2,
-        minimumFractionDigits: 2,
-    }).format(Number(trimmedWrappedStakedSBBalance) * Number(currentIndex) * app.marketPrice);
+    }).format(Number(trimmedSGOBBalance) * app.marketPrice);
 
-    const sumOfAllBalance = Number(sbBalance) + Number(trimmedSSBBalance) + Number(trimmedWrappedStakedSBBalance) * Number(currentIndex);
+    const sumOfAllBalance = Number(gobBalance) + Number(trimmedSGOBBalance) * Number(currentIndex);
     const valueOfAllBalance = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
         maximumFractionDigits: 2,
         minimumFractionDigits: 2,
     }).format(sumOfAllBalance * app.marketPrice);
-    const valueOfYourNextRewardAmount = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-        maximumFractionDigits: 2,
-        minimumFractionDigits: 2,
-    }).format(Number(nextRewardValue) * app.marketPrice);
-    const valueOfYourEffectiveNextRewardAmount = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-        maximumFractionDigits: 2,
-        minimumFractionDigits: 2,
-    }).format(Number(effectiveNextRewardValue) * app.marketPrice);
 
     return (
         <div className="stake-view">
@@ -191,13 +167,13 @@ function Stake() {
                                     <Grid item xs={6} sm={3} md={3} lg={3}>
                                         <div className="stake-card-index">
                                             <p className="stake-card-metrics-title">{t("CurrentIndex")}</p>
-                                            <p className="stake-card-metrics-value">{currentIndex ? <>{trim(Number(currentIndex), 2)} SB</> : <Skeleton width="150px" />}</p>
+                                            <p className="stake-card-metrics-value">{currentIndex ? <>{trim(Number(currentIndex), 2)} GOB</> : <Skeleton width="150px" />}</p>
                                         </div>
                                     </Grid>
 
                                     <Grid item xs={6} sm={3} md={3} lg={3}>
                                         <div className="stake-card-index">
-                                            <p className="stake-card-metrics-title">{t("SBPrice")}</p>
+                                            <p className="stake-card-metrics-title">{t("GOBPrice")}</p>
                                             <p className="stake-card-metrics-value">{isAppLoading ? <Skeleton width="100px" /> : `$${trim(app.marketPrice, 2)}`}</p>
                                         </div>
                                     </Grid>
@@ -245,7 +221,7 @@ function Stake() {
 
                                             {view === 0 && (
                                                 <div className="stake-card-tab-panel">
-                                                    {address && hasAllowance("sb") ? (
+                                                    {address && hasAllowance("gob") ? (
                                                         <div
                                                             className="stake-card-tab-panel-btn"
                                                             onClick={() => {
@@ -253,14 +229,14 @@ function Stake() {
                                                                 onChangeStake("stake");
                                                             }}
                                                         >
-                                                            <p>{txnButtonText(pendingTransactions, "staking", t("Stake SB"))}</p>
+                                                            <p>{txnButtonText(pendingTransactions, "staking", t("stake:StakeGOB"))}</p>
                                                         </div>
                                                     ) : (
                                                         <div
                                                             className="stake-card-tab-panel-btn"
                                                             onClick={() => {
                                                                 if (isPendingTxn(pendingTransactions, "approve_staking")) return;
-                                                                onSeekApproval("sb");
+                                                                onSeekApproval("gob");
                                                             }}
                                                         >
                                                             <p>{txnButtonText(pendingTransactions, "approve_staking", t("Approve"))}</p>
@@ -271,7 +247,7 @@ function Stake() {
 
                                             {view === 1 && (
                                                 <div className="stake-card-tab-panel">
-                                                    {address && hasAllowance("ssb") ? (
+                                                    {address && hasAllowance("sgob") ? (
                                                         <div
                                                             className="stake-card-tab-panel-btn"
                                                             onClick={() => {
@@ -279,14 +255,14 @@ function Stake() {
                                                                 onChangeStake("unstake");
                                                             }}
                                                         >
-                                                            <p>{txnButtonText(pendingTransactions, "unstaking", t("Unstake SB"))}</p>
+                                                            <p>{txnButtonText(pendingTransactions, "unstaking", t("stake:UnstakeGOB"))}</p>
                                                         </div>
                                                     ) : (
                                                         <div
                                                             className="stake-card-tab-panel-btn"
                                                             onClick={() => {
                                                                 if (isPendingTxn(pendingTransactions, "approve_unstaking")) return;
-                                                                onSeekApproval("ssb");
+                                                                onSeekApproval("sgob");
                                                             }}
                                                         >
                                                             <p>{txnButtonText(pendingTransactions, "approve_unstaking", t("Approve"))}</p>
@@ -295,53 +271,27 @@ function Stake() {
                                                 </div>
                                             )}
                                         </div>
-
                                         <div className="stake-card-action-help-text">
-                                            {address && ((!hasAllowance("sb") && view === 0) || (!hasAllowance("ssb") && view === 1)) && <p>{t("stake:ApproveNote")}</p>}
+                                            {address && ((!hasAllowance("gob") && view === 0) || (!hasAllowance("sgob") && view === 1)) && <p>{t("stake:ApproveNote")}</p>}
                                         </div>
                                     </div>
-
                                     <div className="stake-user-data">
                                         <div className="data-row">
                                             <p className="data-row-name">{t("YourBalance")}</p>
-                                            <p className="data-row-value">{isAppLoading ? <Skeleton width="80px" /> : <>{trim(Number(sbBalance), 4)} SB</>}</p>
+                                            <p className="data-row-value">{isAppLoading ? <Skeleton width="80px" /> : <>{trim(Number(gobBalance), 4)} GOB</>}</p>
                                         </div>
-
                                         <div className="data-row">
                                             <p className="data-row-name">{t("stake:YourStakedBalance")}</p>
-                                            <p className="data-row-value">{isAppLoading ? <Skeleton width="80px" /> : <>{trimmedSSBBalance} sSB</>}</p>
+                                            <p className="data-row-value">{isAppLoading ? <Skeleton width="80px" /> : <>{trimmedSGOBBalance} sGOB</>}</p>
                                         </div>
-
-                                        {Number(trimmedWrappedStakedSBBalance) > 0 && (
-                                            <div className="data-row">
-                                                <p className="data-row-name">{t("stake:YourWrappedStakedBalance")}</p>
-                                                <p className="data-row-value">{isAppLoading ? <Skeleton width="80px" /> : <>{trimmedWrappedStakedSBBalance} wsSB</>}</p>
-                                            </div>
-                                        )}
-
-                                        {Number(trimmedWrappedStakedSBBalance) > 0 && (
-                                            <div className="data-row">
-                                                <p className="data-row-name">{t("stake:WrappedTokenEquivalent")}</p>
-                                                <p className="data-row-value">{isAppLoading ? <Skeleton width="80px" /> : <>({wrappedTokenEquivalent} sSB)</>}</p>
-                                            </div>
-                                        )}
                                         <div className="data-row">
                                             <p className="data-row-name">{t("stake:NextRewardAmount")}</p>
-                                            <p className="data-row-value">{isAppLoading ? <Skeleton width="80px" /> : <>{nextRewardValue} SB</>}</p>
+                                            <p className="data-row-value">{isAppLoading ? <Skeleton width="80px" /> : <>{nextRewardValue} GOB</>}</p>
                                         </div>
-
-                                        {Number(trimmedWrappedStakedSBBalance) > 0 && (
-                                            <div className="data-row">
-                                                <p className="data-row-name">{t("stake:EffectiveNextRewardAmount")}</p>
-                                                <p className="data-row-value">{isAppLoading ? <Skeleton width="80px" /> : <>{effectiveNextRewardValue} SB</>}</p>
-                                            </div>
-                                        )}
-
                                         <div className="data-row">
                                             <p className="data-row-name">{t("stake:NextRewardYield")}</p>
                                             <p className="data-row-value">{isAppLoading ? <Skeleton width="80px" /> : <>{stakingRebasePercentage}%</>}</p>
                                         </div>
-
                                         <div className="data-row">
                                             <p className="data-row-name">{t("stake:ROIFiveDayRate")}</p>
                                             <p className="data-row-value">{isAppLoading ? <Skeleton width="80px" /> : <>{trim(Number(fiveDayRate) * 100, 4)}%</>}</p>
@@ -369,31 +319,14 @@ function Stake() {
                                     <div>
                                         <div className="">
                                             <div className="data-row">
-                                                <p className="data-row-name">{t("stake:ValueOfYourSB")}</p>
-                                                <p className="data-row-value"> {isAppLoading ? <Skeleton width="80px" /> : <>{valueOfSB}</>}</p>
+                                                <p className="data-row-name">{t("stake:ValueOfYourGOB")}</p>
+                                                <p className="data-row-value"> {isAppLoading ? <Skeleton width="80px" /> : <>{valueOfGOB}</>}</p>
                                             </div>
 
                                             <div className="data-row">
-                                                <p className="data-row-name">{t("stake:ValueOfYourStakedSB")}</p>
+                                                <p className="data-row-name">{t("stake:ValueOfYourStakedGOB")}</p>
                                                 <p className="data-row-value"> {isAppLoading ? <Skeleton width="80px" /> : <>{valueOfStakedBalance}</>}</p>
                                             </div>
-
-                                            <div className="data-row">
-                                                <p className="data-row-name">{t("stake:ValueOfYourNextRewardAmount")}</p>
-                                                <p className="data-row-value"> {isAppLoading ? <Skeleton width="80px" /> : <>{valueOfYourNextRewardAmount}</>}</p>
-                                            </div>
-
-                                            <div className="data-row">
-                                                <p className="data-row-name">{t("stake:ValueOfYourEffectiveNextRewardAmount")}</p>
-                                                <p className="data-row-value"> {isAppLoading ? <Skeleton width="80px" /> : <>{valueOfYourEffectiveNextRewardAmount}</>}</p>
-                                            </div>
-
-                                            {Number(trimmedWrappedStakedSBBalance) > 0 && (
-                                                <div className="data-row">
-                                                    <p className="data-row-name">{t("stake:ValueOfYourWrappedStakedSB")}</p>
-                                                    <p className="data-row-value"> {isAppLoading ? <Skeleton width="80px" /> : <>{valueOfWrappedStakedBalance}</>}</p>
-                                                </div>
-                                            )}
                                         </div>
                                     </div>
                                 </div>

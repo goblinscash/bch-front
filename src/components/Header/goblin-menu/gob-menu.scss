@@ -1,29 +1,29 @@
-.sb-menu-root{
-  .sb-menu-btn{
+.gob-menu-root{
+  .gob-menu-btn{
     padding: 12px 48px;
-    background: #C3F53C;
+    background: #4a8938;
     box-shadow: 0px 0px 10px rgba(44, 39, 109, 0.1);
     border-radius: 4px;
     cursor: pointer;
     margin-right: 20px;
-    border: 1px solid #0f5806;
+    //border: 1px solid #280100;
 
     p{
       font-family: Montserrat Medium;
       font-weight: 500;
       font-size: 16px;
-      color: #0f5806;
+      color: #FFFFFF;
     }
   }
 }
 
-.sb-menu-popper{
+.gob-menu-popper{
   margin-top: 10px;
 
   @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
-    background: rgba(0, 1, 40, 0.7);
+    background: #280100;
     backdrop-filter: blur(100px);
-    border: 1px solid #40494e;
+    border: 1px solid #4a8938;
   }
 
   /* slightly transparent fallback for Firefox (not supporting backdrop-filter) */
@@ -75,7 +75,7 @@
 
     .divider{
       height: 1px;
-      background: #FFFFFF;
+      background: #4a8938;
       border: none;
     }
   }

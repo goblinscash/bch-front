@@ -9,17 +9,17 @@
         z-index: 2;
 
         @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
-            background: rgba(0, 1, 40, 0.5);
+            background: rgba(40, 1, 0, 0.77);
             backdrop-filter: blur(100px);
         }
 
         /* slightly transparent fallback for Firefox (not supporting backdrop-filter) */
         @supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
-            background: rgba(0, 1, 40, 0.9);
+            background: rgba(40, 1, 0, 0.9);
         }
 
         border-radius: 4px;
-        border: 1px solid #30363a;
+        border: 1px solid #4a8938;
         padding: 20px;
         width: 100%;
 
@@ -189,18 +189,18 @@
                         margin-left: 10px;
 
                         .stake-card-tab-panel-btn {
-                            background: #d0c4ff;
+                            background: #4a8938;
                             border-radius: 4px;
                             padding: 14px 0px;
                             cursor: pointer;
                             text-align: center;
-                            border: 1px solid #441d91;
+                            border: 1px solid rgba(40, 1, 0, 0.77);
 
                             p {
                                 font-family: Montserrat Medium;
                                 font-weight: 500;
                                 font-size: 16px;
-                                color: #441d91;
+                                color: #FFFFFF;
                             }
                         }
                     }

@@ -36,7 +36,7 @@ function ConnectMenu() {
 
     if (isConnected && providerChainID !== DEFAULD_NETWORK) {
         buttonText = t("WrongNetwork");
-        buttonStyle = { backgroundColor: "rgb(255, 67, 67)", color: "#ffffff" };
+        buttonStyle = { backgroundColor: "#74DD54", color: "#ffffff" };
         clickFunc = () => {
             checkWrongNetwork();
         };

@@ -27,7 +27,7 @@ function Bond({ bond }: IBondProps) {
     const [slippage, setSlippage] = useState(0.5);
     const [recipientAddress, setRecipientAddress] = useState(address);
 
-    const [view, setView] = useState(bond.isActive ? 0 : 1);
+    const [view, setView] = useState(0);
 
     const isBondLoading = useSelector<IReduxState, boolean>(state => state.bonding.loading ?? true);
 
@@ -65,31 +65,27 @@ function Bond({ bond }: IBondProps) {
                                 <div className="bond-price-data">
                                     <p className="bond-price-data-title">{t("bond:MintPrice")}</p>
                                     <p className="bond-price-data-value">
-                                        {isBondLoading ? <Skeleton /> : bond.isLP || bond.name === "wavax" ? `$${trim(bond.bondPrice, 2)}` : `${trim(bond.bondPrice, 2)} MIM`}
+                                        {isBondLoading ? <Skeleton /> : bond.isLP || bond.name === "wbch" ? `$${trim(bond.bondPrice, 2)}` : `${trim(bond.bondPrice, 2)} fUSD`}
                                     </p>
                                 </div>
                                 <div className="bond-price-data">
-                                    <p className="bond-price-data-title">{t("SBPrice")}</p>
+                                    <p className="bond-price-data-title">{t("GOBPrice")}</p>
                                     <p className="bond-price-data-value">{isBondLoading ? <Skeleton /> : `$${trim(bond.marketPrice, 2)}`}</p>
                                 </div>
                             </Box>
 
-                            {bond.isActive && (
-                                <div className="bond-one-table">
-                                    <div className={classnames("bond-one-table-btn", { active: !view })} onClick={changeView(0)}>
-                                        <p>{t("bond:Mint")}</p>
-                                    </div>
-                                    <div className={classnames("bond-one-table-btn", { active: view })} onClick={changeView(1)}>
-                                        <p>{t("bond:Redeem")}</p>
-                                    </div>
+                            <div className="bond-one-table">
+                                <div className={classnames("bond-one-table-btn", { active: !view })} onClick={changeView(0)}>
+                                    <p>{t("bond:Mint")}</p>
                                 </div>
-                            )}
+                                <div className={classnames("bond-one-table-btn", { active: view })} onClick={changeView(1)}>
+                                    <p>{t("bond:Redeem")}</p>
+                                </div>
+                            </div>
 
-                            {bond.isActive && (
-                                <TabPanel value={view} index={0}>
-                                    <BondPurchase bond={bond} slippage={slippage} recipientAddress={recipientAddress} />
-                                </TabPanel>
-                            )}
+                            <TabPanel value={view} index={0}>
+                                <BondPurchase bond={bond} slippage={slippage} recipientAddress={recipientAddress} />
+                            </TabPanel>
 
                             <TabPanel value={view} index={1}>
                                 <BondRedeem bond={bond} />
