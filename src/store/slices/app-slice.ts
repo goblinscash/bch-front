@@ -17,7 +17,7 @@ export const loadAppDetails = createAsyncThunk(
     "app/loadAppDetails",
     //@ts-ignore
     async ({ networkID, provider }: ILoadAppDetails) => {
-        const flexusdPrice = getTokenPrice("FLEXUSD");
+        const fusdPrice = getTokenPrice("fUSD");
         const addresses = getAddresses(networkID);
 
         const ohmPrice = getTokenPrice("OHM");
@@ -29,7 +29,7 @@ export const loadAppDetails = createAsyncThunk(
         const sgobContract = new ethers.Contract(addresses.SGOB_ADDRESS, MemoTokenContract, provider);
         const gobContract = new ethers.Contract(addresses.GOB_ADDRESS, TimeTokenContract, provider);
 
-        const marketPrice = ((await getMarketPrice(networkID, provider)) / Math.pow(10, 9)) * flexusdPrice;
+        const marketPrice = ((await getMarketPrice(networkID, provider)) / Math.pow(10, 9)) * fusdPrice;
 
         const totalSupply = (await gobContract.totalSupply()) / Math.pow(10, 9);
         const circSupply = (await sgobContract.circulatingSupply()) / Math.pow(10, 9);
@@ -60,6 +60,7 @@ export const loadAppDetails = createAsyncThunk(
         const stakingAPY = Math.pow(1 + stakingRebase, 365 * 3) - 1;
 
         const currentIndex = await stakingContract.index();
+        //nj - was endTime
         const nextRebase = epoch.endTime;
 
         const treasuryRunway = rfvTreasury / circSupply;
