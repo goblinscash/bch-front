@@ -2,7 +2,7 @@
     "abi": [{
         "inputs": [{
             "internalType": "address",
-            "name": "_Goblin",
+            "name": "_Time",
             "type": "address"
         }, {
             "internalType": "address",
