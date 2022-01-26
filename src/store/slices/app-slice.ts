@@ -60,6 +60,7 @@ export const loadAppDetails = createAsyncThunk(
         const stakingAPY = Math.pow(1 + stakingRebase, 365 * 3) - 1;
 
         const currentIndex = await stakingContract.index();
+        //nj - was endTime
         const nextRebase = epoch.endTime;
 
         const treasuryRunway = rfvTreasury / circSupply;
