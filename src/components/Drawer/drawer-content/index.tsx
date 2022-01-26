@@ -129,7 +129,7 @@ function NavContent() {
                 </div>
             </div>
             <div className="sbch-icon-wrapper">
-                <div className="sbch-icon-inner"></div>
+                <div className="sbch-icon-inner">
                 <img alt="" className="sbch-icon" src={SbchIcon} width="150px" />
                 </div>
             </div>
