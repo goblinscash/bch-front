@@ -42,5 +42,7 @@ yarn-error.log*
 
 # Local Netlify folder
 .netlify
+
+# Desktop.ini files
 Desktop.ini
 desktop.ini
