@@ -1,4 +1,4 @@
-# [Goblin Frontend](https://goblins.cash)
+# [Goblins Frontend](https://goblins.cash)
 This is the front-end repo for Goblins. 
 
 ##  🔧 Setting up Local Development
