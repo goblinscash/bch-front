@@ -1,5 +1,5 @@
-# [Goblins Frontend](https://goblins.cash)
-This is the front-end repo for Goblins. 
+# [Snowbank Frontend](https://dapp.snowbank.finance/)
+This is the front-end repo for Snowbank. 
 
 ##  🔧 Setting up Local Development
 
@@ -10,8 +10,8 @@ Required:
 
 
 ```bash
-git clone https://github.com/goblinscash/bch-front
-cd bch-front
+git clone https://github.com/SnowbankDAO/snowbank-frontend
+cd snowbank-frontend
 yarn install
 npm run start
 ```
@@ -22,7 +22,9 @@ Open the source code and start editing!
 **Pull Requests**:
 Each PR into `main` will get its own custom URL that is visible on the PR page. QA & validate changes on that URL before merging into the deploy branch. 
 
-## 👏🏽 Contributing Guidelines  
+## 👏🏽 Contributing Guidelines 
+
+We keep an updated list of bugs/feature requests in [Github Issues](https://github.com/SnowbankDAO/snowbank-frontend/issues). 
 
 Once you submit a PR, our CI will generate a temporary testing URL where you can validate your changes. Tag any of the gatekeepers on the review to merge them into master. 
 

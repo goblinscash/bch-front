@@ -1,18 +1,13 @@
 .sbch-icon-wrapper {
   height:100%;
-  display:flex;
+  display:block;
   padding-bottom:10px;
   margin-left:auto;
   margin-right:auto;
 }
 
-.sbch-icon-inner {
-  display: inline-block;
-  align-self: flex-end;
-  bottom:15px;
-}
-
 .sbch-icon {
+  padding-top:100%;
 }
 
 .dapp-sidebar {

@@ -129,9 +129,9 @@ function NavContent() {
                 </div>
             </div>
             <div className="sbch-icon-wrapper">
-                <div className="sbch-icon-inner">
-                <img alt="" className="sbch-icon" src={SbchIcon} width="150px" />
-                </div>
+                <a href="https://helpme.cash/" target="_blank">
+                    <img alt="" className="sbch-icon" src={SbchIcon} width="150px" />
+                </a>
             </div>
             <Social />
         </div>

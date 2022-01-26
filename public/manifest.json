@@ -1,13 +1,13 @@
 {
-  "short_name": "Goblins DAO",
+  "short_name": "Snowbank DAO",
   "start_url": ".",
   "homepage": "./",
-  "name": "Goblins Dao",
+  "name": "Snowbank DAO",
   "launch_path": "/public/index.html",
   "icons": [
     {
       "src": "favicon.ico",
-      "sizes": "128x128 64x64 32x32 24x24 16x16",
+      "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     }
   ],
