@@ -1,3 +1,4 @@
-export const secondsUntilBlock = (startBlock: number, endBlock: number) => {
-    return endBlock - startBlock;
+// nj - update from endBlock & startBlock
+export const secondsUntilBlock = (startBlock: number, endTime: number) => {
+    return endTime - startTime;
 };
