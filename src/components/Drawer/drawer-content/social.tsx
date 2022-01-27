@@ -12,7 +12,7 @@ export default function Social() {
                 <SvgIcon color="primary" component={GitHub} />
             </Link>
 
-            <Link href="https://twitter.com/GoblinCash" target="_blank">
+            <Link href="https://twitter.com/GoblinsCash" target="_blank">
                 <SvgIcon color="primary" component={Twitter} />
             </Link>
 
