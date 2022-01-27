@@ -229,7 +229,7 @@ function Stake() {
                                                                 onChangeStake("stake");
                                                             }}
                                                         >
-                                                            <p>{txnButtonText(pendingTransactions, "staking", t("stake:StakeGOB"))}</p>
+                                                            <p>{txnButtonText(pendingTransactions, "staking", t("stake:Stake"))}</p>
                                                         </div>
                                                     ) : (
                                                         <div
@@ -255,7 +255,7 @@ function Stake() {
                                                                 onChangeStake("unstake");
                                                             }}
                                                         >
-                                                            <p>{txnButtonText(pendingTransactions, "unstaking", t("stake:Unstake"))}</p>
+                                                            <p>{txnButtonText(pendingTransactions, "unstaking", t("Stake:Unstake"))}</p>
                                                         </div>
                                                     ) : (
                                                         <div
