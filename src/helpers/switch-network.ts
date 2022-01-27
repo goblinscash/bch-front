@@ -14,7 +14,7 @@ const addChainRequest = () => {
             {
                 chainId: "10001",
                 chainName: "Amber",
-                rpcUrls: ["http://35.220.203.194:8545/"],
+                rpcUrls: ["https://moeing.tech:9545/"],
                 blockExplorerUrls: ["https://www.smartscan.cash/"],
                 nativeCurrency: {
                     name: "BCH",
