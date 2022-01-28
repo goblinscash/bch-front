@@ -1,7 +1,7 @@
 .gob-menu-root{
   .gob-menu-btn{
     padding: 12px 48px;
-    background: #4a8938;
+    background: #50b533;
     box-shadow: 0px 0px 10px rgba(44, 39, 109, 0.1);
     border-radius: 4px;
     cursor: pointer;
@@ -23,7 +23,7 @@
   @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
     background: #280100;
     backdrop-filter: blur(100px);
-    border: 1px solid #4a8938;
+    border: 1px solid #50b533;
   }
 
   /* slightly transparent fallback for Firefox (not supporting backdrop-filter) */
@@ -75,7 +75,7 @@
 
     .divider{
       height: 1px;
-      background: #4a8938;
+      background: #50b533;
       border: none;
     }
   }
