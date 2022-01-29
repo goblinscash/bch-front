@@ -33,8 +33,8 @@ export const gob = new StableBond({
     reserveContractAbi: StableReserveContract,
     networkAddrs: {
         [Networks.AMBER]: {
-            bondAddress: "0x44876dcC52495D40190b49e799249C46BFee8E5c",
-            reserveAddress: "0xEA48ca36933873507636e4aFD72a74f612aAf8CD",
+            bondAddress: "",
+            reserveAddress: "",
         },
     },
 });
@@ -48,8 +48,8 @@ export const wbch = new CustomBond({
     reserveContractAbi: StableReserveContract,
     networkAddrs: {
         [Networks.AMBER]: {
-            bondAddress: "0xf36F279dE02c81Ed8a261507f6EDC2E54C88FC29",
-            reserveAddress: "0x17F4FCF5b6E0A95D4eE331c8529041896A073F9b",
+            bondAddress: "",
+            reserveAddress: "",
         },
     },
 });
@@ -67,7 +67,7 @@ export const fusdGob = new LPBond({
             reserveAddress: "0x216393077abF0518933DA341ee6E9538A454a225",
         },
     },
-    lpUrl: "https://app.mistswap.fi/add/0xEA48ca36933873507636e4aFD72a74f612aAf8CD/0x96917995f030f8fC3D8fDF40F3a6422547c877c1",
+    lpUrl: "https://app.mistswap.fi/add/0x363A28937aF13194b233108F1f1D3212532c7c6C/0x96917995f030f8fC3D8fDF40F3a6422547c877c1",
 });
 
 export const wbchGob = new CustomLPBond({
