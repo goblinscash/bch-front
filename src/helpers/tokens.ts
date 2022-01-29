@@ -27,7 +27,7 @@ export const wbch: IToken = {
 
 const gob: IToken = {
     name: "GOB",
-    address: "0x363A28937aF13194b233108F1f1D3212532c7c6C",
+    address: "0xEA48ca36933873507636e4aFD72a74f612aAf8CD",
     img: GobIcon,
     decimals: 9,
 };
