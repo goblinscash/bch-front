@@ -18,7 +18,7 @@ export const fusd = new StableBond({
     reserveContractAbi: StableReserveContract,
     networkAddrs: {
         [Networks.AMBER]: {
-            bondAddress: "0xe78436E676DE161F606D14B6978cdec3F07C59fa",
+            bondAddress: "0xB8f30Bb16051B816D98EF29D1678C3778fe4193E",
             reserveAddress: "0x96917995f030f8fC3D8fDF40F3a6422547c877c1",
         },
     },
@@ -63,7 +63,7 @@ export const fusdGob = new LPBond({
     reserveContractAbi: LpReserveContract,
     networkAddrs: {
         [Networks.AMBER]: {
-            bondAddress: "0x80c9839E77324baF16C3b7af053e7D299A1d3Be5",
+            bondAddress: "0x98f170C9f0b2F45F04828F54285151A424536276",
             reserveAddress: "0xB8f30Bb16051B816D98EF29D1678C3778fe4193E",
         },
     },
