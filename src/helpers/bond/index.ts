@@ -63,8 +63,8 @@ export const fusdGob = new LPBond({
     reserveContractAbi: LpReserveContract,
     networkAddrs: {
         [Networks.AMBER]: {
-            bondAddress: "0x91618E498aBa55c130aD5b268310f35D0617a0Af",
-            reserveAddress: "0x502904B699453DEE31CddF7C5091A1c82D75ad0C",
+            bondAddress: "0x3C05BE192EC831703918Cf1773E70b79e493CD13",
+            reserveAddress: "0x216393077abF0518933DA341ee6E9538A454a225",
         },
     },
     lpUrl: "https://app.mistswap.fi/add/0x96917995f030f8fC3D8fDF40F3a6422547c877c1/0x363A28937aF13194b233108F1f1D3212532c7c6C",
