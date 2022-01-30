@@ -4,12 +4,12 @@
 			"inputs": [
 				{
 					"internalType": "address",
-					"name": "_Goblin",
+					"name": "_GOB",
 					"type": "address"
 				},
 				{
 					"internalType": "address",
-					"name": "_sGoblin",
+					"name": "_sGOB",
 					"type": "address"
 				},
 				{
@@ -71,7 +71,7 @@
 		},
 		{
 			"inputs": [],
-			"name": "Goblin",
+			"name": "GOB",
 			"outputs": [
 				{
 					"internalType": "address",
@@ -257,7 +257,7 @@
 		},
 		{
 			"inputs": [],
-			"name": "sGoblin",
+			"name": "sGOB",
 			"outputs": [
 				{
 					"internalType": "address",
@@ -271,7 +271,7 @@
 		{
 			"inputs": [
 				{
-					"internalType": "enum GoblinStaking.CONTRACTS",
+					"internalType": "enum Staking.CONTRACTS",
 					"name": "_contract",
 					"type": "uint8"
 				},

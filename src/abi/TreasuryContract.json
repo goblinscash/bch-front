@@ -4,12 +4,12 @@
 			"inputs": [
 				{
 					"internalType": "address",
-					"name": "_Goblin",
+					"name": "_GOB",
 					"type": "address"
 				},
 				{
 					"internalType": "address",
-					"name": "_flexUSD",
+					"name": "_FUSD",
 					"type": "address"
 				},
 				{
@@ -26,7 +26,7 @@
 			"inputs": [
 				{
 					"indexed": true,
-					"internalType": "enum GoblinTreasury.MANAGING",
+					"internalType": "enum Treasury.MANAGING",
 					"name": "managing",
 					"type": "uint8"
 				},
@@ -51,7 +51,7 @@
 			"inputs": [
 				{
 					"indexed": true,
-					"internalType": "enum GoblinTreasury.MANAGING",
+					"internalType": "enum Treasury.MANAGING",
 					"name": "managing",
 					"type": "uint8"
 				},
@@ -287,7 +287,7 @@
 		},
 		{
 			"inputs": [],
-			"name": "Goblin",
+			"name": "GOB",
 			"outputs": [
 				{
 					"internalType": "address",
@@ -817,7 +817,7 @@
 		{
 			"inputs": [
 				{
-					"internalType": "enum GoblinTreasury.MANAGING",
+					"internalType": "enum Treasury.MANAGING",
 					"name": "_managing",
 					"type": "uint8"
 				},
@@ -1049,12 +1049,12 @@
 		},
 		{
 			"inputs": [],
-			"name": "sGOBQueue",
+			"name": "sGOB",
 			"outputs": [
 				{
-					"internalType": "uint256",
+					"internalType": "address",
 					"name": "",
-					"type": "uint256"
+					"type": "address"
 				}
 			],
 			"stateMutability": "view",
@@ -1062,12 +1062,12 @@
 		},
 		{
 			"inputs": [],
-			"name": "sGoblin",
+			"name": "sGOBQueue",
 			"outputs": [
 				{
-					"internalType": "address",
+					"internalType": "uint256",
 					"name": "",
-					"type": "address"
+					"type": "uint256"
 				}
 			],
 			"stateMutability": "view",
@@ -1089,7 +1089,7 @@
 		{
 			"inputs": [
 				{
-					"internalType": "enum GoblinTreasury.MANAGING",
+					"internalType": "enum Treasury.MANAGING",
 					"name": "_managing",
 					"type": "uint8"
 				},
