@@ -63,7 +63,7 @@ export const fusdGob = new LPBond({
     reserveContractAbi: LpReserveContract,
     networkAddrs: {
         [Networks.AMBER]: {
-            bondAddress: "0x5c023544A2e97305c4E94DAC3D46A4a2be2b8035",
+            bondAddress: "0x3C05BE192EC831703918Cf1773E70b79e493CD13",
             reserveAddress: "0x216393077abF0518933DA341ee6E9538A454a225",
         },
     },
