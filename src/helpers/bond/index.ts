@@ -67,7 +67,7 @@ export const fusdGob = new LPBond({
             reserveAddress: "0x216393077abF0518933DA341ee6E9538A454a225",
         },
     },
-    lpUrl: "https://app.mistswap.fi/add/0x363A28937aF13194b233108F1f1D3212532c7c6C/0x96917995f030f8fC3D8fDF40F3a6422547c877c1",
+    lpUrl: "https://app.mistswap.fi/add/0x96917995f030f8fC3D8fDF40F3a6422547c877c1/0x363A28937aF13194b233108F1f1D3212532c7c6C",
 });
 
 export const wbchGob = new CustomLPBond({
