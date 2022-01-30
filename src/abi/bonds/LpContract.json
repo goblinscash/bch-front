@@ -4,7 +4,7 @@
 			"inputs": [
 				{
 					"internalType": "address",
-					"name": "_Goblin",
+					"name": "_GOB",
 					"type": "address"
 				},
 				{
@@ -196,7 +196,7 @@
 		},
 		{
 			"inputs": [],
-			"name": "Goblin",
+			"name": "GOB",
 			"outputs": [
 				{
 					"internalType": "address",
@@ -647,7 +647,7 @@
 		{
 			"inputs": [
 				{
-					"internalType": "enum flexUSDBondDepository.PARAMETER",
+					"internalType": "enum LPBondDepository.PARAMETER",
 					"name": "_parameter",
 					"type": "uint8"
 				},
