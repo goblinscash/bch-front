@@ -8,7 +8,7 @@ import DocsIcon from "../../../assets/icons/docs.svg";
 export default function Social() {
     return (
         <div className="social-row">
-            <Link href="#" target="_blank">
+            <Link href="https://github.com/goblinscash" target="_blank">
                 <SvgIcon color="primary" component={GitHub} />
             </Link>
 
@@ -20,7 +20,7 @@ export default function Social() {
                 <SvgIcon viewBox="0 0 32 32" color="primary" component={Telegram} />
             </Link>
 
-            <Link href="#" target="_blank">
+            <Link href="https://docs.goblins.cash/" target="_blank">
                 <img alt="" src={DocsIcon} />
             </Link>
         </div>
