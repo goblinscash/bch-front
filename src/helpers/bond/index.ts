@@ -9,7 +9,8 @@ import BchGobIcon from "../../assets/tokens/GOB-BCH.png";
 
 import { StableBondContract, LpBondContract, WbchBondContract, StableReserveContract, LpReserveContract } from "../../abi";
 
-{/*export const fusd = new StableBond({
+{
+    /*export const fusd = new StableBond({
     name: "fusd",
     displayName: "flexUSD",
     bondToken: "flexUSD",
@@ -22,7 +23,8 @@ import { StableBondContract, LpBondContract, WbchBondContract, StableReserveCont
             reserveAddress: "0x7b2B3C5308ab5b2a1d9a94d20D35CCDf61e05b72",
         },
     },
-});*/}
+});*/
+}
 
 export const fusdGob = new LPBond({
     name: "fusd_gob_lp",
