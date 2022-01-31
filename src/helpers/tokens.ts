@@ -27,13 +27,13 @@ export const wbch: IToken = {
 
 const gob: IToken = {
     name: "GOB",
-    address: "0xEA48ca36933873507636e4aFD72a74f612aAf8CD",
+    address: "0xdcEB9F93E1004AFc857680320a2cA127c68C8d22",
     img: GobIcon,
     decimals: 9,
 };
 
 const fusd: IToken = {
-    name: "fUSD",
+    name: "FUSD",
     address: "0x96917995f030f8fC3D8fDF40F3a6422547c877c1",
     img: FusdIcon,
     decimals: 18,

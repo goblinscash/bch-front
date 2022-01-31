@@ -268,7 +268,7 @@
             "name": "_reserve1",
             "type": "uint112"
         }, {
-            "internalType": "uint32",
+            "internalType": "uint",
             "name": "_blockTimestampLast",
             "type": "uint32"
         }],
