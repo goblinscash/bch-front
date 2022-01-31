@@ -1,3 +1,3 @@
 export const getMainnetURI = (): string => {
-    return "https://moeing.tech:9545/";
+    return "https://smartbch.fountainhead.cash/mainnet";
 };
