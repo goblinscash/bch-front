@@ -1,6 +1,6 @@
 import { Networks } from "./blockchain";
 
-const AMBER_MAINNET = {
+const smartBCH_MAINNET = {
     DAO_ADDRESS: "0x624ff995Ea50F88778b96c16b650ED1CbF9A5860",
     SGOB_ADDRESS: "0x7dD5b44cd4637E528A6f9eF0020200A6eFC748da",
     GOB_ADDRESS: "0xdcEB9F93E1004AFc857680320a2cA127c68C8d22",
@@ -12,7 +12,7 @@ const AMBER_MAINNET = {
 };
 
 export const getAddresses = (networkID: number) => {
-    if (networkID === Networks.AMBER) return AMBER_MAINNET;
+    if (networkID === Networks.smartBCH) return smartBCH_MAINNET;
 
     throw Error("Network not supported");
 };

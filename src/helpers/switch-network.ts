@@ -3,7 +3,7 @@ import { Networks } from "../constants/blockchain";
 const switchRequest = () => {
     return window.ethereum.request({
         method: "wallet_switchEthereumChain",
-        params: [{ chainId: "10001" }],
+        params: [{ chainId: "10000" }],
     });
 };
 
@@ -12,9 +12,9 @@ const addChainRequest = () => {
         method: "wallet_addEthereumChain",
         params: [
             {
-                chainId: "10001",
-                chainName: "Amber",
-                rpcUrls: ["https://moeing.tech:9545/"],
+                chainId: "10000",
+                chainName: "smartBCH",
+                rpcUrls: ["https://smartbch.fountainhead.cash/mainnet"],
                 blockExplorerUrls: ["https://www.smartscan.cash/"],
                 nativeCurrency: {
                     name: "BCH",
