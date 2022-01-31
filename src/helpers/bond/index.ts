@@ -9,7 +9,7 @@ import BchGobIcon from "../../assets/tokens/GOB-BCH.png";
 
 import { StableBondContract, LpBondContract, WbchBondContract, StableReserveContract, LpReserveContract } from "../../abi";
 
-export const fusd = new StableBond({
+{/*export const fusd = new StableBond({
     name: "fusd",
     displayName: "flexUSD",
     bondToken: "flexUSD",
@@ -22,9 +22,9 @@ export const fusd = new StableBond({
             reserveAddress: "0x7b2B3C5308ab5b2a1d9a94d20D35CCDf61e05b72",
         },
     },
-});
+});*/}
 
-{/*export const fusdGob = new LPBond({
+export const fusdGob = new LPBond({
     name: "fusd_gob_lp",
     displayName: "GOB-flexUSD LP",
     bondToken: "fUSD",
@@ -38,6 +38,6 @@ export const fusd = new StableBond({
         },
     },
     lpUrl: "https://app.mistswap.fi/add/0x56381cB87C8990971f3e9d948939e1a95eA113a3/0x7b2B3C5308ab5b2a1d9a94d20D35CCDf61e05b72",
-});*/}
+});
 
 export default [fusdGob];
