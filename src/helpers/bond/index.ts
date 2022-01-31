@@ -24,7 +24,7 @@ export const fusd = new StableBond({
     },
 });
 
-export const fusdGob = new LPBond({
+{/*export const fusdGob = new LPBond({
     name: "fusd_gob_lp",
     displayName: "GOB-flexUSD LP",
     bondToken: "fUSD",
@@ -38,6 +38,6 @@ export const fusdGob = new LPBond({
         },
     },
     lpUrl: "https://app.mistswap.fi/add/0x56381cB87C8990971f3e9d948939e1a95eA113a3/0x7b2B3C5308ab5b2a1d9a94d20D35CCDf61e05b72",
-});
+});*/}
 
 export default [fusdGob];
