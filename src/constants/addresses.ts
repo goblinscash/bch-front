@@ -16,4 +16,3 @@ export const getAddresses = (networkID: number) => {
 
     throw Error("Network not supported");
 };
-
