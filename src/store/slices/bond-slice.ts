@@ -168,10 +168,10 @@ export const calcBondDetails = createAsyncThunk("bonding/calcBondDetails", async
             const fusdPrice = getTokenPrice("fUSD");
             purchased = purchased * fusdPrice;
         }
-    //} else if (bond.name === fusd.name) {
-     //   purchased = purchased / Math.pow(10, 18);
-     //   const fusdPrice = getTokenPrice("fUSD");
-     //   purchased = purchased * fusdPrice;
+        //} else if (bond.name === fusd.name) {
+        //   purchased = purchased / Math.pow(10, 18);
+        //   const fusdPrice = getTokenPrice("fUSD");
+        //   purchased = purchased * fusdPrice;
     } else {
         purchased = purchased / Math.pow(10, 18);
     }
