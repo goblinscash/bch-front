@@ -18,8 +18,8 @@ export const fusd = new StableBond({
     reserveContractAbi: StableReserveContract,
     networkAddrs: {
         [Networks.smartBCH]: {
-            bondAddress: "0x87f571461310ab5973E24A7F4AD418179b9e82bf",
-            reserveAddress: "0x96917995f030f8fC3D8fDF40F3a6422547c877c1",
+            bondAddress: "0xdD99706034a6645ABc7ab5226ec5B1D023DeEA7b",
+            reserveAddress: "0x7b2B3C5308ab5b2a1d9a94d20D35CCDf61e05b72",
         },
     },
 });
@@ -33,11 +33,11 @@ export const fusdGob = new LPBond({
     reserveContractAbi: LpReserveContract,
     networkAddrs: {
         [Networks.smartBCH]: {
-            bondAddress: "0x9C122F45aE24767Df7cfAC347Cd96cF3d3655Bea",
-            reserveAddress: "0x9b9190C5392116a865Ceef53b57b0bb758256f74",
+            bondAddress: "0x22D7E43D565e898a64203B593A89dAF69e112741",
+            reserveAddress: "0xC20A4f3012bA2Df47544d4926B19604Fa777FB01",
         },
     },
-    lpUrl: "https://app.mistswap.fi/add/0xEA48ca36933873507636e4aFD72a74f612aAf8CD/0x96917995f030f8fC3D8fDF40F3a6422547c877c1",
+    lpUrl: "https://app.mistswap.fi/add/0x56381cB87C8990971f3e9d948939e1a95eA113a3/0x7b2B3C5308ab5b2a1d9a94d20D35CCDf61e05b72",
 });
 
 export default [fusd, fusdGob];
