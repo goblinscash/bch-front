@@ -4,12 +4,12 @@
 			"inputs": [
 				{
 					"internalType": "address",
-					"name": "_GOB",
+					"name": "_Time",
 					"type": "address"
 				},
 				{
 					"internalType": "address",
-					"name": "_sGOB",
+					"name": "_Memories",
 					"type": "address"
 				},
 				{
@@ -71,7 +71,20 @@
 		},
 		{
 			"inputs": [],
-			"name": "GOB",
+			"name": "Memories",
+			"outputs": [
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "Time",
 			"outputs": [
 				{
 					"internalType": "address",
@@ -256,22 +269,9 @@
 			"type": "function"
 		},
 		{
-			"inputs": [],
-			"name": "sGOB",
-			"outputs": [
-				{
-					"internalType": "address",
-					"name": "",
-					"type": "address"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
 			"inputs": [
 				{
-					"internalType": "enum Staking.CONTRACTS",
+					"internalType": "enum SnowbankStaking.CONTRACTS",
 					"name": "_contract",
 					"type": "uint8"
 				},

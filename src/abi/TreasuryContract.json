@@ -4,12 +4,12 @@
 			"inputs": [
 				{
 					"internalType": "address",
-					"name": "_GOB",
+					"name": "_Time",
 					"type": "address"
 				},
 				{
 					"internalType": "address",
-					"name": "_FUSD",
+					"name": "_MIM",
 					"type": "address"
 				},
 				{
@@ -26,7 +26,7 @@
 			"inputs": [
 				{
 					"indexed": true,
-					"internalType": "enum Treasury.MANAGING",
+					"internalType": "enum SnowbankTreasury.MANAGING",
 					"name": "managing",
 					"type": "uint8"
 				},
@@ -51,7 +51,7 @@
 			"inputs": [
 				{
 					"indexed": true,
-					"internalType": "enum Treasury.MANAGING",
+					"internalType": "enum SnowbankTreasury.MANAGING",
 					"name": "managing",
 					"type": "uint8"
 				},
@@ -286,19 +286,6 @@
 			"type": "event"
 		},
 		{
-			"inputs": [],
-			"name": "GOB",
-			"outputs": [
-				{
-					"internalType": "address",
-					"name": "",
-					"type": "address"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
 			"inputs": [
 				{
 					"internalType": "address",
@@ -356,6 +343,19 @@
 			"type": "function"
 		},
 		{
+			"inputs": [],
+			"name": "MEMOries",
+			"outputs": [
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
 			"inputs": [
 				{
 					"internalType": "address",
@@ -369,6 +369,19 @@
 					"internalType": "uint32",
 					"name": "",
 					"type": "uint32"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "Time",
+			"outputs": [
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
 				}
 			],
 			"stateMutability": "view",
@@ -817,7 +830,7 @@
 		{
 			"inputs": [
 				{
-					"internalType": "enum Treasury.MANAGING",
+					"internalType": "enum SnowbankTreasury.MANAGING",
 					"name": "_managing",
 					"type": "uint8"
 				},
@@ -1049,19 +1062,6 @@
 		},
 		{
 			"inputs": [],
-			"name": "sGOB",
-			"outputs": [
-				{
-					"internalType": "address",
-					"name": "",
-					"type": "address"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [],
 			"name": "sOHMQueue",
 			"outputs": [
 				{
@@ -1089,7 +1089,7 @@
 		{
 			"inputs": [
 				{
-					"internalType": "enum Treasury.MANAGING",
+					"internalType": "enum SnowbankTreasury.MANAGING",
 					"name": "_managing",
 					"type": "uint8"
 				},
