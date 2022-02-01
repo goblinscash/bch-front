@@ -59,9 +59,9 @@ function GobMenu() {
                     <Fade {...TransitionProps} timeout={200}>
                         <div className="tooltip">
                             <Link
-                            className="tooltip-item"
-                            href={`https://app.mistswap.fi/swap?inputCurrency=0x7b2B3C5308ab5b2a1d9a94d20D35CCDf61e05b72&outputCurrency=0x56381cB87C8990971f3e9d948939e1a95eA113a3`}
-                            target="_blank"
+                                className="tooltip-item"
+                                href={`https://app.mistswap.fi/swap?inputCurrency=0x7b2B3C5308ab5b2a1d9a94d20D35CCDf61e05b72&outputCurrency=0x56381cB87C8990971f3e9d948939e1a95eA113a3`}
+                                target="_blank"
                             >
                                 <p>Buy on MistSwap</p>
                             </Link>
