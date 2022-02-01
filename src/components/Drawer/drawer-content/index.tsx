@@ -103,7 +103,7 @@ function NavContent() {
                         </div>
                     </Link>
 
-                    <Link href="#" target="_blank">
+                    <Link href="https://docs.goblins.cash/" target="_blank">
                         <div className="button-dapp-menu">
                             <div className="dapp-menu-item">
                                 <img alt="" src={DocsIcon} />
