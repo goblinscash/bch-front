@@ -1,7 +1,7 @@
 import { JsonRpcProvider } from "@ethersproject/providers";
 import { utils } from "ethers";
 
-const GAS = "1.07";
+const GAS = "0";
 
 export const getGasPrice = async (provider: JsonRpcProvider) => {
     const gasPrice = await provider.getGasPrice();
