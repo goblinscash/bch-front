@@ -114,7 +114,7 @@ function Stake() {
         minimumFractionDigits: 2,
     }).format(Number(trimmedSGOBBalance) * app.marketPrice);
 
-    const sumOfAllBalance = Number(gobBalance) + Number(trimmedSGOBBalance) * Number(currentIndex);
+    const sumOfAllBalance = Number(gobBalance) + Number(trimmedSGOBBalance);
     const valueOfAllBalance = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
