@@ -7,6 +7,8 @@
     "hour_other": "hours",
     "min_one": "min",
     "min_other": "mins",
+    "sec_one": "second",
+    "sec_other": "seconds",
     "Amount": "Amount",
     "Max": "Max",
     "Approve": "Approve",

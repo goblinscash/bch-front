@@ -129,11 +129,11 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
 
     const checkWrongNetwork = async (): Promise<boolean> => {
         if (providerChainID !== DEFAULD_NETWORK) {
-            const shouldSwitch = window.confirm(messages.switch_to_mainnet);
-            if (shouldSwitch) {
-                await swithNetwork();
-                window.location.reload();
-            }
+            await swithNetwork();
+            // const shouldSwitch = window.confirm(messages.switch_to_mainnet);
+            // if (shouldSwitch) {
+            window.location.reload();
+            // }
             return true;
         }
 

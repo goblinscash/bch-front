@@ -10,7 +10,7 @@ import DocsIcon from "../../../assets/icons/docs.svg";
 import SbchIcon from "../../../assets/smartbch-logo.png";
 
 import ProIcon from "../../../assets/icons/pro.svg";
-import GoblinIcon from "../../../assets/icons/goblin-logo-warp-1.png";
+import GoblinIcon from "../../../assets/icons/goblins-logo.png";
 import DashboardIcon from "../../../assets/icons/dashboard.svg";
 import { trim, shorten } from "../../../helpers";
 import { useAddress } from "../../../hooks";
@@ -131,11 +131,11 @@ function NavContent() {
                     </Link> */}
                 </div>
             </div>
-            <div className="sbch-icon-wrapper">
+            {/* <div className="sbch-icon-wrapper">
                 <a href="https://helpme.cash/" target="_blank">
                     <img alt="" className="sbch-icon" src={SbchIcon} width="150px" />
                 </a>
-            </div>
+            </div>*/}
             <Social />
         </div>
     );

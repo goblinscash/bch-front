@@ -1,4 +1,4 @@
-import { AppBar, Toolbar } from "@material-ui/core";
+import { AppBar, CircularProgress, Toolbar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import MenuIcon from "../../assets/icons/hamburger.svg";
@@ -6,6 +6,8 @@ import GoblinMenu from "./goblin-menu";
 import ConnectButton from "./connect-button";
 import "./header.scss";
 import { DRAWER_WIDTH, TRANSITION_DURATION } from "../../constants/style";
+import { useSelector } from "react-redux";
+import { IReduxState } from "src/store/slices/state.interface";
 
 interface IHeader {
     handleDrawerToggle: () => void;
@@ -38,16 +40,21 @@ const useStyles = makeStyles(theme => ({
         }),
         marginLeft: 0,
     },
+    progressColor: {
+        color: "#00FF10",
+    },
 }));
 
 function Header({ handleDrawerToggle, drawe }: IHeader) {
     const classes = useStyles();
+    const isAppLoading = useSelector<IReduxState, boolean>(state => state.app.loading);
     const isVerySmallScreen = useMediaQuery("(max-width: 400px)");
 
     return (
         <div className={`${classes.topBar} ${!drawe && classes.topBarShift}`}>
             <AppBar position="sticky" className={classes.appBar} elevation={0}>
                 <Toolbar disableGutters className="dapp-topbar">
+                    <div className="">{isAppLoading && <CircularProgress className={classes.progressColor} />}</div>
                     <div onClick={handleDrawerToggle} className="dapp-topbar-slider-btn">
                         <img src={MenuIcon} alt="" />
                     </div>

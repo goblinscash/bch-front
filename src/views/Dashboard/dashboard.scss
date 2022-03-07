@@ -17,7 +17,7 @@
       flex-direction: column;
       position: relative;
       z-index: 2;
-      border: 1px solid #50b533;
+      border: 1px solid #00FF10;
 
       @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
         background: rgba(40, 1, 0, 0.77);
@@ -48,6 +48,28 @@
         color: #FFFFFF;
         font-feature-settings: "ss09", "ss11";
       }
+    }
+  }
+  .get-started-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    //flex-direction: column;
+    position: relative;
+    z-index: 2;
+    border: 1px solid #ff7f00;
+    margin-top:30px;
+    
+    .get-started-card {
+      width: 30%;
+      display: inline-block;
+      text-align: center;
+      padding: 30px;
+      font-family: Montserrat SemiBold;
+      font-weight: 500;
+      font-size: 24px;
+      color: #FFFFFF;
+      font-feature-settings: "ss09", "ss11";
     }
   }
 }

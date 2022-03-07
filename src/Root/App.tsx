@@ -21,7 +21,6 @@ function App() {
 
     const [walletChecked, setWalletChecked] = useState(false);
 
-    const isAppLoading = useSelector<IReduxState, boolean>(state => state.app.loading);
     const isAppLoaded = useSelector<IReduxState, boolean>(state => !Boolean(state.app.marketPrice));
 
     const { bonds } = useBonds();
@@ -102,7 +101,21 @@ function App() {
         }
     }, [connected]);
 
-    if (isAppLoading) return <Loading />;
+    useEffect(() => {
+        const updateAppDetailsInterval = setInterval(() => {
+            if (walletChecked || connected) {
+                loadDetails("app");
+                loadDetails("account");
+                loadDetails("userBonds");
+                loadDetails("userTokens");
+            }
+        }, 1000 * 120);
+        return () => {
+            clearInterval(updateAppDetailsInterval);
+        };
+    }, [walletChecked, connected]);
+
+    // if (isAppLoading) return <Loading />;
 
     return (
         <ViewBase>

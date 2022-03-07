@@ -2,6 +2,9 @@ import { useSelector } from "react-redux";
 import { Grid, Zoom } from "@material-ui/core";
 import { trim } from "../../helpers";
 import "./dashboard.scss";
+import YTIcon from "../../assets/icons/how-to-yt.png";
+import TGIcon from "../../assets/icons/telegram.png";
+import DOCSIcon from "../../assets/icons/docs.png";
 import { Skeleton } from "@material-ui/lab";
 import { IReduxState } from "../../store/slices/state.interface";
 import { IAppSlice } from "../../store/slices/app-slice";
@@ -46,7 +49,7 @@ function Dashboard() {
                             </div>
                         </Grid>
 
-                        {/* <Grid item lg={6} md={6} sm={6} xs={12}>
+                        <Grid item lg={6} md={6} sm={6} xs={12}>
                             <div className="dashboard-card">
                                 <p className="card-title">{t("SupplyStakedTotal")}</p>
                                 <p className="card-value">
@@ -65,7 +68,7 @@ function Dashboard() {
                                     )}
                                 </p>
                             </div>
-                        </Grid> */}
+                        </Grid>
 
                         <Grid item lg={6} md={6} sm={6} xs={12}>
                             <div className="dashboard-card">
@@ -143,6 +146,15 @@ function Dashboard() {
                         </Grid>
                     </Grid>
                 </Zoom>
+                {/*<Zoom in={true}>
+                    <div>
+                        <div className="get-started-wrapper data-row">
+                            <div className="get-started-card">Documentation</div>
+                            <div className="get-started-card">How-Tos</div>
+                            <div className="get-started-card">Community</div>
+                        </div>
+                    </div>
+                </Zoom>*/}
             </div>
         </div>
     );
