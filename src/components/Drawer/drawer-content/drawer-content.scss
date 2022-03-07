@@ -15,8 +15,8 @@
   min-width: 280px;
   display: flex;
   flex-direction: column;
-  background: rgba(40, 1, 0, 0.77);
-  border-right: 1px solid #50b533;
+  background: rgb(32, 1, 1);
+  border-right: 1px solid #00FF10;
   overflow-y: none;
 
   .branding-header {
@@ -114,7 +114,7 @@
           font-family: Montserrat;
           font-size: 14px;
           line-height: 18px;
-          color: #41cd1a;
+          color: #00FF10;
           font-feature-settings: "ss09", "ss11";
         }
 
