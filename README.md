@@ -11,7 +11,7 @@ Required:
 
 ```bash
 git clone https://github.com/goblinscash/bch-front/
-cd goblins-frontend
+cd bch-front
 yarn install
 npm run start
 ```
