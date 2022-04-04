@@ -89,7 +89,19 @@ function NavContent() {
                         <div className="button-dapp-menu">
                             <div className="dapp-menu-item">
                                 <img alt="" src={BuyIcon} />
-                                <p>{t("Buy")}</p>
+                                <p>{t("Buy GOB")}</p>
+                            </div>
+                        </div>
+                    </Link>
+
+                    <Link
+                        href="https://app.mistswap.fi/swap?inputCurrency=0x56381cB87C8990971f3e9d948939e1a95eA113a3&outputCurrency=0x009dC89aC501a62C4FaaF7196aeE90CF79B6fC7c"
+                        target="_blank"
+                    >
+                        <div className="button-dapp-menu">
+                            <div className="dapp-menu-item">
+                                <img alt="" src={BuyIcon} />
+                                <p>{t("Buy gBCH")}</p>
                             </div>
                         </div>
                     </Link>
