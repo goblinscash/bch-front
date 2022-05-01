@@ -131,10 +131,13 @@ export const calculateUserBondDetails = createAsyncThunk("account/calculateUserB
     const bondDetails = await bondContract.bondInfo(address);
 
     if (bond.isPro) {
-        interestDue = bondDetails.payout / Math.pow(10, 18);
+        if (bond.name === "gob-gbch-bond") {
+            interestDue = bondDetails.payout / Math.pow(10, 9);
+        } else {
+            interestDue = bondDetails.payout / Math.pow(10, 18);
+        }
         bondMaturationBlock = Number(bondDetails.vesting) + Number(bondDetails.lastBlockTimestamp);
         pendingPayout = await bondContract.pendingPayoutFor(address);
-        // pendingPayout = pendingPayout / Math.pow(10, 9);
     } else {
         interestDue = bondDetails.payout / Math.pow(10, 9);
         bondMaturationBlock = Number(bondDetails.vesting) + Number(bondDetails.lastTime);
