@@ -159,7 +159,9 @@ export const calculateUserBondDetails = createAsyncThunk("account/calculateUserB
 
     let pendingPayoutVal: any = ethers.utils.formatUnits(pendingPayout, "gwei");
     if (bond.isPro) {
-        pendingPayoutVal = pendingPayoutVal / Math.pow(10, 9);
+        if (bond.name !== "gob-gbch-bond") {
+            pendingPayoutVal = pendingPayoutVal / Math.pow(10, 9);
+        }
     }
     return {
         bond: bond.name,
