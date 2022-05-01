@@ -122,5 +122,24 @@ export const proGbchGob = new ProBond({
     },
 });
 
+export const proGobGbch = new ProBond({
+    name: "gob-gbch-bond",
+    displayName: "gBCH",
+    bondToken: "gBCH",
+    payoutToken: "GOB",
+    bondIconSvg: GbchIcon,
+    bondContractABI: AmpleBond,
+    oracleContractABI: OracleContract,
+    reserveContractAbi: StableReserveContract,
+    networkAddrs: {
+        [Networks.smartBCH]: {
+            bondAddress: "0xE671aBcf3995cF7E5809e3a06f8a6292C240b510",
+            reserveAddress: "0x009dC89aC501a62C4FaaF7196aeE90CF79B6fC7c",
+            //oracleAddress: "0x92977982718E6B193ed2aB56865153C3bF053dF5",
+            proTreasuryAddress: "0x5d51B1aC5DaE47c4Eede9b79223B8b4E1D3B9f74",
+        },
+    },
+});
+
 export default [fusdGob, proGbchFusd, proGbchGbch, proGbchGob];
 // export default [fusdGob, proGbchGbch];
