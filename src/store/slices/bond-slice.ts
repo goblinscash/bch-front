@@ -113,7 +113,7 @@ export const calcBondDetails = createAsyncThunk("bonding/calcBondDetails", async
 
     const terms = await bondContract.terms();
     let maxBondPrice = (await bondContract.maxPayout()) / Math.pow(10, 9);
-
+    // debugger;
     marketPrice = await getMarketPrice(networkID, provider);
     const fusdPrice = getTokenPrice("fUSD");
     marketPrice = (marketPrice / Math.pow(10, 9)) * fusdPrice;
@@ -130,14 +130,18 @@ export const calcBondDetails = createAsyncThunk("bonding/calcBondDetails", async
     try {
         if (bond.isPro) {
             const bondPriceHex = await bondContract.bondPrice();
-            if (bond.name === "gbch_bond") {
+            if (bond.name === "gbch_bond" || bond.name === "gob-gbch-bond") {
                 bondPrice = (bondPriceHex / 10000000) * gbchMarketPrice;
             } else if (bond.name === "gbch_fusd-bond") {
                 bondPrice = (bondPriceHex / 10000000) * fusdPrice;
             } else {
                 bondPrice = (bondPriceHex / 10000000) * marketPrice;
             }
-            bondDiscount = (gbchMarketPrice - bondPrice) / bondPrice;
+            if (bond.name === "gob-gbch-bond") {
+                bondDiscount = (marketPrice - bondPrice) / bondPrice;
+            } else {
+                bondDiscount = (gbchMarketPrice - bondPrice) / bondPrice;
+            }
             maxBondPrice = maxBondPrice / Math.pow(10, 9);
         } else {
             bondPrice = await bondContract.bondPriceInUSD();
@@ -214,6 +218,10 @@ export const calcBondDetails = createAsyncThunk("bonding/calcBondDetails", async
         let proTreasuryAddress = (bond as ProBond).getProTreasuryAddress(networkID);
         purchased = await token.balanceOf(proTreasuryAddress);
         purchased = (purchased / Math.pow(10, 19)) * gbchMarketPrice;
+    } else if (bond.name === "gob-gbch-bond") {
+        let proTreasuryAddress = (bond as ProBond).getProTreasuryAddress(networkID);
+        purchased = await token.balanceOf(proTreasuryAddress);
+        purchased = (purchased / Math.pow(10, 18)) * gbchMarketPrice;
     } else if (bond.name === "gbch_fusd-bond") {
         let proTreasuryAddress = (bond as ProBond).getProTreasuryAddress(networkID);
         purchased = await token.balanceOf(proTreasuryAddress);

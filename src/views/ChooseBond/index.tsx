@@ -94,7 +94,7 @@ function ChooseBond() {
                                         </TableHead>
                                         <TableBody>
                                             {bonds
-                                                .filter(bond => !bond.isPro)
+                                                .filter(bond => bond.payoutToken === "GOB")
                                                 .map(bond => (
                                                     <BondTableData key={bond.name} bond={bond} />
                                                 ))}
@@ -110,7 +110,7 @@ function ChooseBond() {
                     <div className="choose-bond-view-card-container">
                         <Grid container item spacing={2}>
                             {bonds
-                                .filter(bond => !bond.isPro)
+                                .filter(bond => bond.payoutToken === "GOB")
                                 .map(bond => (
                                     <Grid item xs={12} key={bond.name}>
                                         <BondDataCard key={bond.name} bond={bond} />
@@ -179,7 +179,7 @@ function ChooseBond() {
                                         </TableHead>
                                         <TableBody>
                                             {bonds
-                                                .filter(bond => bond.isPro)
+                                                .filter(bond => bond.payoutToken === "GBCH")
                                                 .map(bond => (
                                                     <BondTableData key={bond.name} bond={bond} />
                                                 ))}
@@ -195,7 +195,7 @@ function ChooseBond() {
                     <Box className="choose-bond-view-card-container">
                         <Grid container item spacing={2}>
                             {bonds
-                                .filter(bond => bond.isPro)
+                                .filter(bond => bond.payoutToken === "GBCH")
                                 .map(bond => (
                                     <Grid item xs={12} key={bond.name}>
                                         <BondDataCard key={bond.name} bond={bond} />

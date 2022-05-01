@@ -73,7 +73,7 @@ function Bond({ bond }: IBondProps) {
                                 <div className="bond-price-data">
                                     <p className="bond-price-data-title">{bond.payoutToken} Price</p>
                                     <p className="bond-price-data-value">
-                                        {isBondLoading ? <Skeleton /> : `$${bond.isPro ? trim(gbchMarketPrice, 2) : trim(bond.marketPrice, 2)}`}
+                                        {isBondLoading ? <Skeleton /> : `$${bond.payoutToken === "GBCH" ? trim(gbchMarketPrice, 2) : trim(bond.marketPrice, 2)}`}
                                     </p>
                                 </div>
                             </Box>
