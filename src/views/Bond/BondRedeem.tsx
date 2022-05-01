@@ -75,7 +75,7 @@ function BondRedeem({ bond }: IBondRedeem) {
                 >
                     <p>{txnButtonText(pendingTransactions, "redeem_bond_" + bond.name, t("bond:Claim"))}</p>
                 </div>
-                {bond.name === "gob-bond" && (
+                {bond.name === "fusd_gob_lp" && (
                     <div
                         className="transaction-button bond-approve-btn"
                         onClick={() => {
