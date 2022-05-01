@@ -65,7 +65,9 @@ export function BondDataCard({ bond }: IBondProps) {
                 </div>
                 <Link component={NavLink} to={`/mints/${bond.name}`}>
                     <div className="bond-table-btn">
-                        <p>{t("bond:MintBond", { bond: bond.displayName })}</p>
+                        <p>
+                            Bond {bond.payoutToken} with {bond.displayName}
+                        </p>
                     </div>
                 </Link>
             </Paper>

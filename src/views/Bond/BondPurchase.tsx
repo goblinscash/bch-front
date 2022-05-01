@@ -40,8 +40,13 @@ function BondPurchase({ bond, slippage, recipientAddress }: IBondPurchaseProps) 
     };
 
     async function onBond() {
+        console.log("ON BOND", quantity);
         if (await checkWrongNetwork()) return;
-
+        let trimBalance: any = trim(Number(quantity), 10);
+        if (bond.name === "gob-bond") {
+            trimBalance = Number(trimBalance) * Math.pow(10, -9);
+            trimBalance = trimBalance.toFixed(18);
+        }
         if (quantity === "") {
             dispatch(warning({ text: messages.before_minting }));
             //@ts-ignore
@@ -50,8 +55,7 @@ function BondPurchase({ bond, slippage, recipientAddress }: IBondPurchaseProps) 
         } else if (bond.interestDue > 0 || bond.pendingPayout > 0) {
             const shouldProceed = window.confirm(messages.existing_mint);
             if (shouldProceed) {
-                const trimBalance = trim(Number(quantity), 10);
-
+                // const trimBalance = trim(Number(quantity), 10);
                 await dispatch(
                     bondAsset({
                         value: trimBalance,
@@ -66,7 +70,6 @@ function BondPurchase({ bond, slippage, recipientAddress }: IBondPurchaseProps) 
                 clearInput();
             }
         } else {
-            const trimBalance = trim(Number(quantity), 10);
             await dispatch(
                 //@ts-ignore
                 bondAsset({
@@ -93,7 +96,7 @@ function BondPurchase({ bond, slippage, recipientAddress }: IBondPurchaseProps) 
 
     const setMax = () => {
         let amount: any = Math.min(bond.maxBondPriceToken * 0.9999, useBch ? bond.bchBalance * 0.99 : bond.balance);
-
+        console.log("AMOUNT", amount);
         if (amount) {
             amount = trim(amount);
         }
@@ -104,6 +107,7 @@ function BondPurchase({ bond, slippage, recipientAddress }: IBondPurchaseProps) 
     const bondDetailsDebounce = useDebounce(quantity, 1000);
 
     useEffect(() => {
+        console.error("Quality", quantity);
         dispatch(calcBondDetails({ bond, value: quantity, provider, networkID: chainID }));
     }, [bondDetailsDebounce]);
 
@@ -181,7 +185,7 @@ function BondPurchase({ bond, slippage, recipientAddress }: IBondPurchaseProps) 
                                 <Skeleton width="100px" />
                             ) : (
                                 <>
-                                    {trim(useBch ? bond.bchBalance : bond.balance, 4)} {displayUnits}
+                                    {trim(useBch ? bond.bchBalance : bond.balance, 4)} {bond.bondToken}
                                 </>
                             )}
                         </p>
@@ -189,12 +193,12 @@ function BondPurchase({ bond, slippage, recipientAddress }: IBondPurchaseProps) 
 
                     <div className="data-row">
                         <p className="bond-balance-title">{t("bond:YouWillGet")}</p>
-                        <p className="price-data bond-balance-title">{isBondLoading ? <Skeleton width="100px" /> : `${trim(bond.bondQuote, 4)} GOB`}</p>
+                        <p className="price-data bond-balance-title">{isBondLoading ? <Skeleton width="100px" /> : `${trim(bond.bondQuote, 4)} ${bond.payoutToken}`}</p>
                     </div>
 
                     <div className={`data-row`}>
                         <p className="bond-balance-title">{t("bond:MaxYouCanBuy")}</p>
-                        <p className="price-data bond-balance-title">{isBondLoading ? <Skeleton width="100px" /> : `${trim(bond.maxBondPrice, 4)} GOB`}</p>
+                        <p className="price-data bond-balance-title">{isBondLoading ? <Skeleton width="100px" /> : `${trim(bond.maxBondPrice, 4)} ${bond.payoutToken}`}</p>
                     </div>
 
                     <div className="data-row">
@@ -209,7 +213,7 @@ function BondPurchase({ bond, slippage, recipientAddress }: IBondPurchaseProps) 
 
                     <div className="data-row">
                         <p className="bond-balance-title">{t("bond:MinimumPurchase")}</p>
-                        <p className="bond-balance-title">0.01 GOB</p>
+                        <p className="bond-balance-title">0.01 {bond.payoutToken}</p>
                     </div>
 
                     {recipientAddress !== address && (

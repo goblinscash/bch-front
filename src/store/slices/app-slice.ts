@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 import { getAddresses } from "../../constants";
 import { StakingContract, MemoTokenContract, TimeTokenContract } from "../../abi";
-import { setAll, getMarketPrice, getTokenPrice } from "../../helpers";
+import { setAll, getMarketPrice, getTokenPrice, getPairPrice } from "../../helpers";
 import { createSlice, createSelector, createAsyncThunk } from "@reduxjs/toolkit";
 import { JsonRpcProvider } from "@ethersproject/providers";
 
@@ -31,15 +31,31 @@ export const loadAppDetails = createAsyncThunk(
 
         const marketPrice = ((await getMarketPrice(networkID, provider)) / Math.pow(10, 9)) * fusdPrice;
 
+        const mPrice = await getPairPrice();
+        let gbchBondRatio = mPrice.token0Price;
+        const gbchMarketPrice = marketPrice / mPrice.token0Price;
+
         const totalSupply = (await gobContract.totalSupply()) / Math.pow(10, 9);
         const circSupply = (await sgobContract.circulatingSupply()) / Math.pow(10, 9);
 
         const stakingTVL = circSupply * marketPrice;
         const marketCap = totalSupply * marketPrice;
 
-        const tokenBalPromises = allBonds.map(bond => bond.getTreasuryBalance(networkID, provider));
+        const tokenBalPromises = allBonds.filter(b => !b.isPro).map(bond => bond.getTreasuryBalance(networkID, provider));
         const tokenBalances = await Promise.all(tokenBalPromises);
         const treasuryBalance = tokenBalances.reduce((tokenBalance0, tokenBalance1) => tokenBalance0 + tokenBalance1) + 200000; //add static 200000 for mist farm
+
+        const tokenProBalPromises = allBonds
+            .filter(b => b.isPro)
+            .map(async bond => {
+                const bondPurchase: any = await bond.getTreasuryBalance(networkID, provider);
+                if (bond.name === "gob-bond") {
+                    return bondPurchase * marketPrice;
+                }
+                return bondPurchase;
+            });
+        const tokenProBalances = await Promise.all(tokenProBalPromises);
+        const treasuryProBalance = tokenProBalances.reduce((tokenBalance0, tokenBalance1) => tokenBalance0 + tokenBalance1);
 
         const tokenAmountsPromises = allBonds.map(bond => bond.getTokenAmount(networkID, provider));
         const tokenAmounts = await Promise.all(tokenAmountsPromises);
@@ -74,10 +90,12 @@ export const loadAppDetails = createAsyncThunk(
             circSupply,
             fiveDayRate,
             treasuryBalance,
+            treasuryProBalance,
             stakingAPY,
             stakingTVL,
             stakingRebase,
             marketPrice,
+            gbchMarketPrice,
             currentBlockTime,
             nextRebase,
             rfv,
@@ -94,6 +112,7 @@ export interface IAppSlice {
     loading: boolean;
     stakingTVL: number;
     marketPrice: number;
+    gbchMarketPrice: number;
     marketCap: number;
     circSupply: number;
     currentIndex: string;
@@ -101,6 +120,7 @@ export interface IAppSlice {
     currentBlockTime: number;
     fiveDayRate: number;
     treasuryBalance: number;
+    treasuryProBalance: number;
     stakingAPY: number;
     stakingRebase: number;
     networkID: number;

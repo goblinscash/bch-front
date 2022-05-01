@@ -5,6 +5,7 @@ import "./dashboard.scss";
 import YTIcon from "../../assets/icons/how-to-yt.png";
 import TGIcon from "../../assets/icons/telegram.png";
 import DOCSIcon from "../../assets/icons/docs.png";
+import GOB200Icon from "../../assets/icons/GOBx200.png";
 import { Skeleton } from "@material-ui/lab";
 import { IReduxState } from "../../store/slices/state.interface";
 import { IAppSlice } from "../../store/slices/app-slice";

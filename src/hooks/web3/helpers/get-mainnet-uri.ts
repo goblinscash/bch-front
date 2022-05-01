@@ -1,3 +1,3 @@
 export const getMainnetURI = (): string => {
-    return "https://smartbch.fountainhead.cash/mainnet";
+    return "https://smartbch.greyh.at";
 };

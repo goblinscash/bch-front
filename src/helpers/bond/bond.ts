@@ -8,6 +8,7 @@ import { getTokenPrice } from "../token-price";
 export interface BondOpts {
     readonly name: string; // Internal name used for references
     readonly displayName: string; // Displayname on UI
+    readonly payoutToken: string; // PayoutTokenName on UI
     readonly bondIconSvg: string; //  SVG path for icons
     readonly bondContractABI: ContractInterface; // ABI for contract
     readonly networkAddrs: NetworkAddresses; // Mapping of network --> Addresses
@@ -17,6 +18,7 @@ export interface BondOpts {
 export abstract class Bond {
     public readonly name: string;
     public readonly displayName: string;
+    public readonly payoutToken: string;
     public readonly type: BondType;
     public readonly bondIconSvg: string;
     public readonly bondContractABI: ContractInterface; // Bond ABI
@@ -25,6 +27,7 @@ export abstract class Bond {
     public readonly lpUrl?: string;
 
     // The following two fields will differ on how they are set depending on bond type
+    public abstract isPro: boolean;
     public abstract isLP: boolean;
     protected abstract reserveContractAbi: ContractInterface; // Token ABI
     public abstract displayUnits: string;
@@ -37,6 +40,7 @@ export abstract class Bond {
     constructor(type: BondType, bondOpts: BondOpts) {
         this.name = bondOpts.name;
         this.displayName = bondOpts.displayName;
+        this.payoutToken = bondOpts.payoutToken;
         this.type = type;
         this.bondIconSvg = bondOpts.bondIconSvg;
         this.bondContractABI = bondOpts.bondContractABI;

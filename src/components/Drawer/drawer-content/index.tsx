@@ -3,7 +3,7 @@ import Social from "./social";
 import StakeIcon from "../../../assets/icons/stake.svg";
 import BondIcon from "../../../assets/icons/bond.svg";
 import BuyIcon from "../../../assets/icons/buy.svg";
-import CaretIcon from "../../../assets/icons/governance.svg";
+import GovIcon from "../../../assets/icons/governance.svg";
 import BorrowIcon from "../../../assets/icons/borrow.svg";
 import Snowglobe from "../../../assets/icons/snowglobe.svg";
 import DocsIcon from "../../../assets/icons/docs.svg";
@@ -69,7 +69,7 @@ function NavContent() {
                     <div className="bond-discounts">
                         <p className="bond-discounts-title">{t("MintDiscounts")}</p>
                         {bonds.map((bond, i) => (
-                            <Link component={NavLink} to={`/mints/${bond.name}`} key={i} className={"bond"}>
+                            <Link component={NavLink} to={`/mints/`} key={i} className={"bond"}>
                                 {!bond.bondDiscount ? (
                                     <Skeleton variant="text" width={"150px"} />
                                 ) : (
@@ -94,23 +94,20 @@ function NavContent() {
                         </div>
                     </Link>
 
-                    <Link
-                        href="https://app.mistswap.fi/swap?inputCurrency=0x56381cB87C8990971f3e9d948939e1a95eA113a3&outputCurrency=0x009dC89aC501a62C4FaaF7196aeE90CF79B6fC7c"
-                        target="_blank"
-                    >
-                        <div className="button-dapp-menu">
-                            <div className="dapp-menu-item">
-                                <img alt="" src={BuyIcon} />
-                                <p>{t("Buy gBCH")}</p>
-                            </div>
-                        </div>
-                    </Link>
-
-                    <Link href="https://app.mistswap.fi/bridge" target="_blank">
+                    <Link href="https://sideshift.ai/eth/smartbch" target="_blank">
                         <div className="button-dapp-menu">
                             <div className="dapp-menu-item">
                                 <img alt="" src={BorrowIcon} />
                                 <p>{t("Bridge")}</p>
+                            </div>
+                        </div>
+                    </Link>
+
+                    <Link href="https://vote.goblins.cash" target="_blank">
+                        <div className="button-dapp-menu">
+                            <div className="dapp-menu-item">
+                                <img alt="" src={GovIcon} />
+                                <p>{t("Governance")}</p>
                             </div>
                         </div>
                     </Link>

@@ -41,8 +41,6 @@
     }
 
     .choose-bond-view-card-metrics{
-      margin: 30px 0;
-
       .choose-bond-view-card-metrics-title{
         font-family: Montserrat;
         font-weight: 400;
@@ -55,7 +53,7 @@
       .choose-bond-view-card-metrics-value{
         font-family: Montserrat SemiBold;
         font-weight: 500;
-        font-size: 24px;
+        font-size: 18px;
         color: #FFFFFF;
         font-feature-settings: "ss09", "ss11";
       }
@@ -79,6 +77,7 @@
 
   .choose-bond-view-card-container{
     margin-top: 16px;
+    width: 100%;
 
     .bond-data-card {
       margin: auto !important;
@@ -254,5 +253,13 @@
 @media screen and (max-width: 1240px) {
   .choose-bond-view{
     width: 100%;
+    .choose-bond-view-card-metrics {
+      .choose-bond-view-card-metrics-title{
+        font-size: 14px!important;
+      }
+      .choose-bond-view-card-metrics-value{
+        font-size: 14px!important;
+      }
+    }
   }
 }

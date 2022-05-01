@@ -129,22 +129,35 @@ export const calculateUserBondDetails = createAsyncThunk("account/calculateUserB
     let interestDue, pendingPayout, bondMaturationBlock;
 
     const bondDetails = await bondContract.bondInfo(address);
-    interestDue = bondDetails.payout / Math.pow(10, 9);
-    bondMaturationBlock = Number(bondDetails.vesting) + Number(bondDetails.lastTime);
-    pendingPayout = await bondContract.pendingPayoutFor(address);
+
+    if (bond.isPro) {
+        interestDue = bondDetails.payout / Math.pow(10, 18);
+        bondMaturationBlock = Number(bondDetails.vesting) + Number(bondDetails.lastBlockTimestamp);
+        pendingPayout = await bondContract.pendingPayoutFor(address);
+        // pendingPayout = pendingPayout / Math.pow(10, 9);
+    } else {
+        interestDue = bondDetails.payout / Math.pow(10, 9);
+        bondMaturationBlock = Number(bondDetails.vesting) + Number(bondDetails.lastTime);
+        pendingPayout = await bondContract.pendingPayoutFor(address);
+    }
 
     let allowance,
         balance = "0";
 
     allowance = await reserveContract.allowance(address, bond.getAddressForBond(networkID));
     balance = await reserveContract.balanceOf(address);
-    const balanceVal = ethers.utils.formatEther(balance);
+    let balanceVal: any = ethers.utils.formatEther(balance);
+    if (bond.name === "gob-bond") {
+        balanceVal = Number(balanceVal) * Math.pow(10, 9);
+    }
 
     const bchBalance = await provider.getSigner().getBalance();
     const bchVal = ethers.utils.formatEther(bchBalance);
 
-    const pendingPayoutVal = ethers.utils.formatUnits(pendingPayout, "gwei");
-
+    let pendingPayoutVal: any = ethers.utils.formatUnits(pendingPayout, "gwei");
+    if (bond.isPro) {
+        pendingPayoutVal = pendingPayoutVal / Math.pow(10, 9);
+    }
     return {
         bond: bond.name,
         displayName: bond.displayName,
@@ -204,7 +217,7 @@ export const calculateUserTokenDetails = createAsyncThunk("account/calculateUser
     let allowance,
         balance = "0";
 
-    allowance = await tokenContract.allowance(address);
+    allowance = await tokenContract.allowance(address, address);
     balance = await tokenContract.balanceOf(address);
 
     const balanceVal = Number(balance) / Math.pow(10, token.decimals);

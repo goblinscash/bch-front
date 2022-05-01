@@ -75,26 +75,28 @@ function BondRedeem({ bond }: IBondRedeem) {
                 >
                     <p>{txnButtonText(pendingTransactions, "redeem_bond_" + bond.name, t("bond:Claim"))}</p>
                 </div>
-                <div
-                    className="transaction-button bond-approve-btn"
-                    onClick={() => {
-                        if (isPendingTxn(pendingTransactions, "redeem_bond_" + bond.name + "_autostake")) return;
-                        onRedeem(true);
-                    }}
-                >
-                    <p>{txnButtonText(pendingTransactions, "redeem_bond_" + bond.name + "_autostake", t("bond:ClaimAutostake"))}</p>
-                </div>
+                {!bond.isPro && (
+                    <div
+                        className="transaction-button bond-approve-btn"
+                        onClick={() => {
+                            if (isPendingTxn(pendingTransactions, "redeem_bond_" + bond.name + "_autostake")) return;
+                            onRedeem(true);
+                        }}
+                    >
+                        <p>{txnButtonText(pendingTransactions, "redeem_bond_" + bond.name + "_autostake", t("bond:ClaimAutostake"))}</p>
+                    </div>
+                )}
             </Box>
 
             <Slide direction="right" in={true} mountOnEnter unmountOnExit {...{ timeout: 533 }}>
                 <Box className="bond-data">
                     <div className="data-row">
                         <p className="bond-balance-title">{t("bond:PendingRewards")}</p>
-                        <p className="price-data bond-balance-title">{isBondLoading ? <Skeleton width="100px" /> : `${trim(bond.interestDue, 4)} GOB`}</p>
+                        <p className="price-data bond-balance-title">{isBondLoading ? <Skeleton width="100px" /> : `${trim(bond.interestDue, 4)} ${bond.payoutToken}`}</p>
                     </div>
                     <div className="data-row">
                         <p className="bond-balance-title">{t("bond:ClaimableRewards")}</p>
-                        <p className="price-data bond-balance-title">{isBondLoading ? <Skeleton width="100px" /> : `${trim(bond.pendingPayout, 4)} GOB`}</p>
+                        <p className="price-data bond-balance-title">{isBondLoading ? <Skeleton width="100px" /> : `${trim(bond.pendingPayout, 4)} ${bond.payoutToken}`}</p>
                     </div>
                     <div className="data-row">
                         <p className="bond-balance-title">{t("bond:TimeFullyVested")}</p>

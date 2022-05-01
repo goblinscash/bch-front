@@ -30,7 +30,9 @@ function Bond({ bond }: IBondProps) {
     const [view, setView] = useState(0);
 
     const isBondLoading = useSelector<IReduxState, boolean>(state => state.bonding.loading ?? true);
-
+    const gbchMarketPrice = useSelector<IReduxState, number>(state => {
+        return state.app.gbchMarketPrice;
+    });
     const onRecipientAddressChange = (value: any) => {
         return setRecipientAddress(value);
     };
@@ -65,12 +67,14 @@ function Bond({ bond }: IBondProps) {
                                 <div className="bond-price-data">
                                     <p className="bond-price-data-title">{t("bond:MintPrice")}</p>
                                     <p className="bond-price-data-value">
-                                        {isBondLoading ? <Skeleton /> : bond.isLP || bond.name === "wbch" ? `$${trim(bond.bondPrice, 2)}` : `${trim(bond.bondPrice, 2)} fUSD`}
+                                        {isBondLoading ? <Skeleton /> : bond.isLP || bond.name === "wbch" ? `$${trim(bond.bondPrice, 2)}` : `$${trim(bond.bondPrice, 2)}`}
                                     </p>
                                 </div>
                                 <div className="bond-price-data">
-                                    <p className="bond-price-data-title">{t("GOBPrice")}</p>
-                                    <p className="bond-price-data-value">{isBondLoading ? <Skeleton /> : `$${trim(bond.marketPrice, 2)}`}</p>
+                                    <p className="bond-price-data-title">{bond.payoutToken} Price</p>
+                                    <p className="bond-price-data-value">
+                                        {isBondLoading ? <Skeleton /> : `$${bond.isPro ? trim(gbchMarketPrice, 2) : trim(bond.marketPrice, 2)}`}
+                                    </p>
                                 </div>
                             </Box>
 

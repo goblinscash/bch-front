@@ -14,7 +14,7 @@ const addChainRequest = () => {
             {
                 chainId: "10000",
                 chainName: "SmartBCH",
-                rpcUrls: ["https://smartbch.fountainhead.cash/mainnet"],
+                rpcUrls: ["https://smartbch.greyh.at"],
                 blockExplorerUrls: ["https://www.smartscan.cash/"],
                 nativeCurrency: {
                     name: "BCH",

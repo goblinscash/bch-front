@@ -109,7 +109,7 @@ function App() {
                 loadDetails("userBonds");
                 loadDetails("userTokens");
             }
-        }, 1000 * 120);
+        }, 1000 * 300);
         return () => {
             clearInterval(updateAppDetailsInterval);
         };
