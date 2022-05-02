@@ -174,9 +174,6 @@ export const calcBondDetails = createAsyncThunk("bonding/calcBondDetails", async
         if (bond.name === "gob-bond" || bond.name === "gob-gbch-bond") {
             bondQuote = bondQuoteObj._payout * Math.pow(10, -27);
             maxBondPriceToken = maxBondPrice / (maxBondQuoteObj._payout * Math.pow(10, -27));
-        //} if (bond.name === "gob-gbch-bond") {
-        //    bondQuote = bondQuoteObj._payout * Math.pow(10, -18);
-        //    maxBondPriceToken = maxBondPrice / (maxBondQuoteObj._payout * Math.pow(10, -18));
         } else {
             bondQuote = bondQuoteObj._payout / Math.pow(10, 18);
             maxBondPriceToken = maxBondPrice / (maxBondQuoteObj._payout * Math.pow(10, -18));
