@@ -40,7 +40,6 @@ function BondPurchase({ bond, slippage, recipientAddress }: IBondPurchaseProps) 
     };
 
     async function onBond() {
-        console.log("ON BOND", quantity);
         if (await checkWrongNetwork()) return;
         let trimBalance: any = trim(Number(quantity), 10);
         if (bond.name === "gob-bond") {

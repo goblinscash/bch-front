@@ -142,7 +142,9 @@ export const calcBondDetails = createAsyncThunk("bonding/calcBondDetails", async
             } else {
                 bondDiscount = (gbchMarketPrice - bondPrice) / bondPrice;
             }
-            maxBondPrice = maxBondPrice / Math.pow(10, 9);
+            if (bond.name !== "gob-gbch-bond") {
+                maxBondPrice = maxBondPrice / Math.pow(10, 9);
+            }
         } else {
             bondPrice = await bondContract.bondPriceInUSD();
             if (bond.name === fusdGob.name) {
@@ -174,6 +176,9 @@ export const calcBondDetails = createAsyncThunk("bonding/calcBondDetails", async
         if (bond.name === "gob-bond") {
             bondQuote = bondQuoteObj._payout * Math.pow(10, -27);
             maxBondPriceToken = maxBondPrice / (maxBondQuoteObj._payout * Math.pow(10, -27));
+        } else if (bond.name === "gob-gbch-bond") {
+            bondQuote = bondQuoteObj._payout * Math.pow(10, -9);
+            maxBondPriceToken = maxBondPrice / (maxBondQuoteObj._payout * Math.pow(10, -9));
         } else {
             bondQuote = bondQuoteObj._payout / Math.pow(10, 18);
             maxBondPriceToken = maxBondPrice / (maxBondQuoteObj._payout * Math.pow(10, -18));
