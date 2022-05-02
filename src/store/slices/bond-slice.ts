@@ -171,7 +171,7 @@ export const calcBondDetails = createAsyncThunk("bonding/calcBondDetails", async
         // debugger;
         const bondQuoteObj: any = await bondContract.payoutFor(amountInWei);
         const maxBondQuoteObj = await bondContract.payoutFor(maxBodValue);
-        if (bond.name === "gob-bond" || bond.name === "gob-gbch-bond") {
+        if (bond.name === "gob-bond") {
             bondQuote = bondQuoteObj._payout * Math.pow(10, -27);
             maxBondPriceToken = maxBondPrice / (maxBondQuoteObj._payout * Math.pow(10, -27));
         } else {
