@@ -46,4 +46,11 @@ export const gbch: IToken = {
     img: GbchIcon,
     decimals: 18,
 };
-export default [fusd, gob, gbch];
+
+export const wgbch: IToken = {
+    name: "WGBCH",
+    address: "0xA8b17927e726177d1D243815193e3Fc88e770dA7",
+    img: GbchIcon,
+    decimals: 18,
+};
+export default [fusd, gob, gbch, wgbch];

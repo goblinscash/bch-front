@@ -1,17 +1,17 @@
 import { useSelector } from "react-redux";
 import { Typography, Paper, Grid, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Zoom } from "@material-ui/core";
-import { BondTableData, BondDataCard } from "./BondRow";
+import { BondTableData, BondDataCard } from "./StakeRow";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { trim } from "../../helpers";
 import { gob, gbch } from "../../helpers/tokens";
 import useBonds from "../../hooks/bonds";
-import "./choosebond.scss";
+import "./pool.scss";
 import { Skeleton } from "@material-ui/lab";
 import { IReduxState } from "../../store/slices/state.interface";
 
 import { useTranslation } from "react-i18next";
 
-function ChooseBond() {
+function Pool() {
     const { t } = useTranslation();
 
     const { bonds } = useBonds();
@@ -120,93 +120,8 @@ function ChooseBond() {
                     </div>
                 )}
             </div>
-            <div className="choose-bond-view" style={{ marginTop: "10px" }}>
-                <Zoom in={true}>
-                    <Paper className="choose-bond-view-card">
-                        <Grid container item xs={12} spacing={2} className="choose-bond-view-card-metrics">
-                            <Grid item xs={6} sm={2}>
-                                <img src={gbch.img} alt="GOB" style={{ width: "36px", top: "-8px", position: "relative", float: "right" }} />
-                            </Grid>
-                            <Grid item xs={6} sm={2}>
-                                <div className="choose-bond-view-card-metrics-value" style={{ textAlign: "left" }}>
-                                    <text>GBCH</text>
-                                </div>
-                            </Grid>
-                            <Grid item xs={6} sm={4}>
-                                <div className="choose-bond-view-card-metrics-value">
-                                    <span>Treasury: </span>
-                                    {isAppLoading ? (
-                                        <Skeleton width="180px" />
-                                    ) : (
-                                        new Intl.NumberFormat("en-US", {
-                                            style: "currency",
-                                            currency: "USD",
-                                            maximumFractionDigits: 0,
-                                            minimumFractionDigits: 0,
-                                        }).format(treasuryProBalance + 104800) //81400 flex & 23400 gob
-                                    )}
-                                </div>
-                            </Grid>
-
-                            <Grid item xs={6} sm={4}>
-                                <Box textAlign="center">
-                                    <div className="choose-bond-view-card-metrics-value">
-                                        {t("GBCH Price")}: {isAppLoading ? <Skeleton width="100px" /> : `$${trim(gbchMarketPrice, 2)}`}
-                                    </div>
-                                </Box>
-                            </Grid>
-                        </Grid>
-                        {!isSmallScreen && (
-                            <Grid container item>
-                                <TableContainer className="choose-bond-view-card-table">
-                                    <Table aria-label="Available bonds">
-                                        <TableHead>
-                                            <TableRow>
-                                                <TableCell align="center">
-                                                    <p className="choose-bond-view-card-table-title">{t("bond:Bond")}</p>
-                                                </TableCell>
-                                                <TableCell align="center">
-                                                    <p className="choose-bond-view-card-table-title">{t("Price")}</p>
-                                                </TableCell>
-                                                <TableCell align="center">
-                                                    <p className="choose-bond-view-card-table-title">{t("ROI")}</p>
-                                                </TableCell>
-                                                <TableCell align="right">
-                                                    <p className="choose-bond-view-card-table-title">{t("bond:Purchased")}</p>
-                                                </TableCell>
-                                                <TableCell align="right"></TableCell>
-                                            </TableRow>
-                                        </TableHead>
-                                        <TableBody>
-                                            {bonds
-                                                .filter(bond => bond.payoutToken === "gBCH")
-                                                .map(bond => (
-                                                    <BondTableData key={bond.name} bond={bond} />
-                                                ))}
-                                        </TableBody>
-                                    </Table>
-                                </TableContainer>
-                            </Grid>
-                        )}
-                    </Paper>
-                </Zoom>
-
-                {isSmallScreen && (
-                    <Box className="choose-bond-view-card-container">
-                        <Grid container item spacing={2}>
-                            {bonds
-                                .filter(bond => bond.payoutToken === "gBCH")
-                                .map(bond => (
-                                    <Grid item xs={12} key={bond.name}>
-                                        <BondDataCard key={bond.name} bond={bond} />
-                                    </Grid>
-                                ))}
-                        </Grid>
-                    </Box>
-                )}
-            </div>
         </>
     );
 }
 
-export default ChooseBond;
+export default Pool;

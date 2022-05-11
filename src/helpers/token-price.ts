@@ -1,4 +1,7 @@
+import { Contract } from "ethers";
 import axios from "axios";
+import { JsonRpcSigner, StaticJsonRpcProvider } from "@ethersproject/providers";
+import { WgbchContract } from "../abi";
 
 const cache: { [key: string]: number } = {};
 
@@ -23,4 +26,11 @@ export const getPairPrice = async () => {
     });
     const pair = data.data.pair;
     return { token0Price: pair.token0Price, token1Price: pair.token1Price };
+};
+
+export const convertTokenValue = (amount: number, provider: StaticJsonRpcProvider | JsonRpcSigner) => {
+    const address = "0xA8b17927e726177d1D243815193e3Fc88e770dA7";
+    var contract = new Contract(address, WgbchContract, provider);
+    // return contract.wrapperToUnderlying(amount);
+    return contract.underlyingToWrapper(amount);
 };
