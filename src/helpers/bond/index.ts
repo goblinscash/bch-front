@@ -162,4 +162,4 @@ export const proWgbchGbch = new ProBond({
 });
 
 //export default [fusdGob, proGbchFusd, proGbchGbch, proGbchGob, proGobGbch, proWgbchGbch];
- export default [fusdGob, proWgbchGbch];
+export default [fusdGob, proWgbchGbch];
