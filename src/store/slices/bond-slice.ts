@@ -18,6 +18,7 @@ import { metamaskErrorWrap } from "../../helpers/metamask-error-wrap";
 import { sleep } from "../../helpers";
 import i18n from "../../i18n";
 import { ProBond } from "../../helpers/bond/stable-bond";
+import { convertTokenValue } from "../../helpers/token-price";
 
 interface IChangeApproval {
     bond: Bond;
@@ -176,6 +177,14 @@ export const calcBondDetails = createAsyncThunk("bonding/calcBondDetails", async
         if (bond.name === "gob-bond") {
             bondQuote = bondQuoteObj._payout * Math.pow(10, -27);
             maxBondPriceToken = maxBondPrice / (maxBondQuoteObj._payout * Math.pow(10, -27));
+        } else if (bond.name === "wgbch-gbch-bond") {
+            debugger;
+            bondQuote = bondQuoteObj._payout; // / Math.pow(10, 18);
+            // take the value from wgbch token: wrapperToUnderlying(amount)
+            const quote = await convertTokenValue(bondQuote, provider);
+            // console.log('QUOTE', quote)
+            bondQuote = quote / Math.pow(10, 18);
+            maxBondPriceToken = maxBondPrice / (maxBondQuoteObj._payout * Math.pow(10, -18));
         } else if (bond.name === "gob-gbch-bond") {
             bondQuote = bondQuoteObj._payout * Math.pow(10, -9);
             maxBondPriceToken = maxBondPrice / (maxBondQuoteObj._payout * Math.pow(10, -9));
