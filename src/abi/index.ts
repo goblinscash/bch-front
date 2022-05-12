@@ -18,3 +18,4 @@ export { abi as TreasuryContract } from "./TreasuryContract.json";
 export { abi as AmpleBond } from "./bonds/AmpleBond.json";
 export { abi as OracleContract } from "./bonds/OracleContract.json";
 export { abi as AmpleTreasury } from "./AmpleTreasury.json";
+export { abi as WgbchContract } from "./tokens/WgbchContract.json";
