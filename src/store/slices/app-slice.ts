@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 import { getAddresses } from "../../constants";
 import { StakingContract, MemoTokenContract, TimeTokenContract } from "../../abi";
-import { setAll, getMarketPrice, getTokenPrice, getPairPrice } from "../../helpers";
+import { setAll, getMarketPrice, getTokenPrice, getPairPrice, getProbondMarketPrice } from "../../helpers";
 import { createSlice, createSelector, createAsyncThunk } from "@reduxjs/toolkit";
 import { JsonRpcProvider } from "@ethersproject/providers";
 
@@ -31,9 +31,10 @@ export const loadAppDetails = createAsyncThunk(
 
         const marketPrice = ((await getMarketPrice(networkID, provider)) / Math.pow(10, 9)) * fusdPrice;
 
-        const mPrice = await getPairPrice();
-        let gbchBondRatio = mPrice.token0Price;
-        const gbchMarketPrice = marketPrice / mPrice.token0Price;
+        // const mPrice = await getPairPrice();
+        // let gbchBondRatio = mPrice.token0Price;
+        // const gbchMarketPrice = marketPrice / mPrice.token0Price;
+        const gbchMarketPrice = await getProbondMarketPrice(null, networkID, provider);
 
         const totalSupply = (await gobContract.totalSupply()) / Math.pow(10, 9);
         const circSupply = (await sgobContract.circulatingSupply()) / Math.pow(10, 9);

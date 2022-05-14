@@ -1,5 +1,5 @@
 import { ethers, constants } from "ethers";
-import { getMarketPrice, getPairPrice, getTokenPrice } from "../../helpers";
+import { getMarketPrice, getPairPrice, getProbondMarketPrice, getTokenPrice } from "../../helpers";
 import { calculateUserBondDetails, getBalances } from "./account-slice";
 import { getAddresses } from "../../constants";
 import { fetchPendingTxns, clearPendingTxn } from "./pending-txns-slice";
@@ -121,11 +121,10 @@ export const calcBondDetails = createAsyncThunk("bonding/calcBondDetails", async
     let gbchMarketPrice = 0;
     let gbchBondRatio = 0;
     if (bond.isPro) {
-        var mPrice = await getPairPrice();
-        gbchBondRatio = mPrice.token0Price;
-        // const oracleContract = (bond as ProBond).getOracleContract(networkID, provider);
-        // const goldPrice = await oracleContract.getGoldPrice();
-        gbchMarketPrice = marketPrice / mPrice.token0Price;
+        // var mPrice = await getPairPrice();
+        // gbchBondRatio = mPrice.token0Price;
+        // gbchMarketPrice = marketPrice / mPrice.token0Price;
+        gbchMarketPrice = await getProbondMarketPrice(null, networkID, provider);
     }
 
     try {
