@@ -1,9 +1,5 @@
 import { ethers, constants } from "ethers";
-<<<<<<< HEAD
 import { getMarketPrice, getProbondMarketPrice, getTokenPrice } from "../../helpers";
-=======
-import { getMarketPrice, getPairPrice, getProbondMarketPrice, getTokenPrice } from "../../helpers";
->>>>>>> main
 import { calculateUserBondDetails, getBalances } from "./account-slice";
 import { getAddresses } from "../../constants";
 import { fetchPendingTxns, clearPendingTxn } from "./pending-txns-slice";
