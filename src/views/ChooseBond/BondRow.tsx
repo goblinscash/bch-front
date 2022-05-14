@@ -111,8 +111,8 @@ export function BondTableData({ bond }: IBondProps) {
                         new Intl.NumberFormat("en-US", {
                             style: "currency",
                             currency: "USD",
-                            maximumFractionDigits: 0,
-                            minimumFractionDigits: 0,
+                            maximumFractionDigits: 2,
+                            minimumFractionDigits: 2,
                         }).format(bond.purchased)
                     )}
                 </p>

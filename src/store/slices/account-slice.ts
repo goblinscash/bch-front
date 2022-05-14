@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 import { getAddresses } from "../../constants";
 import { TimeTokenContract, MemoTokenContract, MimTokenContract } from "../../abi";
-import { setAll } from "../../helpers";
+import { convertWrappertoUnder, setAll } from "../../helpers";
 
 import { createSlice, createSelector, createAsyncThunk } from "@reduxjs/toolkit";
 import { JsonRpcProvider, StaticJsonRpcProvider } from "@ethersproject/providers";
@@ -131,10 +131,14 @@ export const calculateUserBondDetails = createAsyncThunk("account/calculateUserB
     const bondDetails = await bondContract.bondInfo(address);
 
     if (bond.isPro) {
+        let quote = 0;
+        if (bond.payoutToken === "gBCH") {
+            quote = await convertWrappertoUnder(bondDetails.payout, provider);
+        }
         if (bond.name === "gob-gbch-bond") {
-            interestDue = bondDetails.payout / Math.pow(10, 9);
+            interestDue = quote / Math.pow(10, 9);
         } else {
-            interestDue = bondDetails.payout / Math.pow(10, 18);
+            interestDue = quote / Math.pow(10, 18);
         }
         bondMaturationBlock = Number(bondDetails.vesting) + Number(bondDetails.lastBlockTimestamp);
         pendingPayout = await bondContract.pendingPayoutFor(address);

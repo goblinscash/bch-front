@@ -1,5 +1,5 @@
 import { ethers, constants } from "ethers";
-import { getMarketPrice, getPairPrice, getTokenPrice } from "../../helpers";
+import { getMarketPrice, getProbondMarketPrice, getTokenPrice } from "../../helpers";
 import { calculateUserBondDetails, getBalances } from "./account-slice";
 import { getAddresses } from "../../constants";
 import { fetchPendingTxns, clearPendingTxn } from "./pending-txns-slice";
@@ -10,7 +10,7 @@ import { Bond } from "../../helpers/bond/bond";
 import { Networks } from "../../constants/blockchain";
 import { getBondCalculator } from "../../helpers/bond-calculator";
 import { RootState } from "../store";
-import { fusdGob, proGbchFusd, proGbchGbch } from "../../helpers/bond";
+import { fusdGob } from "../../helpers/bond";
 import { error, warning, success, info } from "../slices/messages-slice";
 import { messages } from "../../constants/messages";
 import { getGasPrice } from "../../helpers/get-gas-price";
@@ -18,7 +18,7 @@ import { metamaskErrorWrap } from "../../helpers/metamask-error-wrap";
 import { sleep } from "../../helpers";
 import i18n from "../../i18n";
 import { ProBond } from "../../helpers/bond/stable-bond";
-import { convertTokenValue } from "../../helpers/token-price";
+import { convertUndertoWrapper, convertWrappertoUnder } from "../../helpers/token-price";
 
 interface IChangeApproval {
     bond: Bond;
@@ -121,21 +121,28 @@ export const calcBondDetails = createAsyncThunk("bonding/calcBondDetails", async
     let gbchMarketPrice = 0;
     let gbchBondRatio = 0;
     if (bond.isPro) {
-        var mPrice = await getPairPrice();
-        gbchBondRatio = mPrice.token0Price;
-        // const oracleContract = (bond as ProBond).getOracleContract(networkID, provider);
-        // const goldPrice = await oracleContract.getGoldPrice();
-        gbchMarketPrice = marketPrice / mPrice.token0Price;
+        // var mPrice = await getPairPrice();
+        // gbchBondRatio = mPrice.token0Price;
+        // gbchMarketPrice = marketPrice / mPrice.token0Price;
+        gbchMarketPrice = await getProbondMarketPrice(bond, networkID, provider);
     }
 
     try {
         if (bond.isPro) {
             const bondPriceHex = await bondContract.bondPrice();
-            if (bond.name === "gbch_bond" || bond.name === "gob-gbch-bond") {
-                bondPrice = (bondPriceHex / 10000000) * gbchMarketPrice;
+            const quote = await convertUndertoWrapper(bondPriceHex, provider);
+
+            if (["gbch_bond", "gob-gbch-bond", "wgbch-gbch-bond"].includes(bond.name)) {
+                // bondPrice = (bondPriceHex / 10000000) * gbchMarketPrice;
+                bondPrice = (quote / 10000000) * gbchMarketPrice;
             } else if (bond.name === "gbch_fusd-bond") {
-                bondPrice = (bondPriceHex / 10000000) * fusdPrice;
+                // bondPrice = (bondPriceHex / 10000000) * fusdPrice;
+                bondPrice = (quote / 10000000) * fusdPrice;
+            } else if (bond.name === "gob-bond") {
+                // bondPrice = (bondPriceHex / 10000000) * fusdPrice;
+                bondPrice = (quote / 10000000) * marketPrice;
             } else {
+                debugger;
                 bondPrice = (bondPriceHex / 10000000) * marketPrice;
             }
             if (bond.name === "gob-gbch-bond") {
@@ -175,14 +182,15 @@ export const calcBondDetails = createAsyncThunk("bonding/calcBondDetails", async
         const bondQuoteObj: any = await bondContract.payoutFor(amountInWei);
         const maxBondQuoteObj = await bondContract.payoutFor(maxBodValue);
         if (bond.name === "gob-bond") {
-            bondQuote = bondQuoteObj._payout * Math.pow(10, -27);
+            bondQuote = bondQuoteObj._payout; // * Math.pow(10, -27);
+            const quote = await convertWrappertoUnder(bondQuote, provider);
+            bondQuote = quote * Math.pow(10, -27);
             maxBondPriceToken = maxBondPrice / (maxBondQuoteObj._payout * Math.pow(10, -27));
-        } else if (bond.name === "wgbch-gbch-bond") {
-            debugger;
+        } else if (bond.name === "wgbch-gbch-bond" || bond.name === "gbch_fusd-bond") {
+            // wgbch-fusd
             bondQuote = bondQuoteObj._payout; // / Math.pow(10, 18);
             // take the value from wgbch token: wrapperToUnderlying(amount)
-            const quote = await convertTokenValue(bondQuote, provider);
-            // console.log('QUOTE', quote)
+            const quote = await convertWrappertoUnder(bondQuote, provider);
             bondQuote = quote / Math.pow(10, 18);
             maxBondPriceToken = maxBondPrice / (maxBondQuoteObj._payout * Math.pow(10, -18));
         } else if (bond.name === "gob-gbch-bond") {
@@ -232,7 +240,7 @@ export const calcBondDetails = createAsyncThunk("bonding/calcBondDetails", async
         let proTreasuryAddress = (bond as ProBond).getProTreasuryAddress(networkID);
         purchased = await token.balanceOf(proTreasuryAddress);
         purchased = (purchased / Math.pow(10, 19)) * gbchMarketPrice;
-    } else if (bond.name === "gob-gbch-bond") {
+    } else if (bond.name === "gob-gbch-bond" || bond.name === "wgbch-gbch-bond") {
         let proTreasuryAddress = (bond as ProBond).getProTreasuryAddress(networkID);
         purchased = await token.balanceOf(proTreasuryAddress);
         purchased = (purchased / Math.pow(10, 18)) * gbchMarketPrice;

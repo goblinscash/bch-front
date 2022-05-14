@@ -64,24 +64,24 @@ export const fusdGob = new LPBond({
 });
 
 //Pro Bonds
-export const proGbchFusd = new ProBond({
-    name: "gbch_fusd-bond",
-    displayName: "FlexUSD",
-    bondToken: "flexUSD",
-    payoutToken: "GBCH",
-    bondIconSvg: FusdIcon,
-    bondContractABI: AmpleBond,
-    oracleContractABI: OracleContract,
-    reserveContractAbi: StableReserveContract,
-    networkAddrs: {
-        [Networks.smartBCH]: {
-            bondAddress: "0x624dA24fDEC642d4789acA9fD7FAc4C90b05De2c",
-            reserveAddress: "0x7b2B3C5308ab5b2a1d9a94d20D35CCDf61e05b72",
-            oracleAddress: "0xA0ce258356Aa1d4A914CD4B86f5E8CCca7903d67",
-            proTreasuryAddress: "0x7517943B4303D5F43Bfd97Fb07289376Ab73b6D4",
-        },
-    },
-});
+// export const proGbchFusd = new ProBond({
+//     name: "gbch_fusd-bond",
+//     displayName: "FlexUSD",
+//     bondToken: "flexUSD",
+//     payoutToken: "gBCH",
+//     bondIconSvg: FusdIcon,
+//     bondContractABI: AmpleBond,
+//     oracleContractABI: OracleContract,
+//     reserveContractAbi: StableReserveContract,
+//     networkAddrs: {
+//         [Networks.smartBCH]: {
+//             bondAddress: "0x624dA24fDEC642d4789acA9fD7FAc4C90b05De2c",
+//             reserveAddress: "0x7b2B3C5308ab5b2a1d9a94d20D35CCDf61e05b72",
+//             oracleAddress: "0xA0ce258356Aa1d4A914CD4B86f5E8CCca7903d67",
+//             proTreasuryAddress: "0x7517943B4303D5F43Bfd97Fb07289376Ab73b6D4",
+//         },
+//     },
+// });
 
 export const proGbchGbch = new ProBond({
     name: "gbch_bond",
@@ -103,24 +103,24 @@ export const proGbchGbch = new ProBond({
     },
 });
 
-export const proGbchGob = new ProBond({
-    name: "gob-bond",
-    displayName: "GOB",
-    bondToken: "GOB",
-    payoutToken: "gBCH",
-    bondIconSvg: GobIcon,
-    bondContractABI: AmpleBond,
-    oracleContractABI: OracleContract,
-    reserveContractAbi: StableReserveContract,
-    networkAddrs: {
-        [Networks.smartBCH]: {
-            bondAddress: "0x301fCF5A50a662EC941Ea836C019467DC265941c",
-            reserveAddress: "0x56381cB87C8990971f3e9d948939e1a95eA113a3",
-            oracleAddress: "0x92977982718E6B193ed2aB56865153C3bF053dF5",
-            proTreasuryAddress: "0x7517943B4303D5F43Bfd97Fb07289376Ab73b6D4",
-        },
-    },
-});
+// export const proGbchGob = new ProBond({
+//     name: "gob-bond",
+//     displayName: "GOB",
+//     bondToken: "GOB",
+//     payoutToken: "gBCH",
+//     bondIconSvg: GobIcon,
+//     bondContractABI: AmpleBond,
+//     oracleContractABI: OracleContract,
+//     reserveContractAbi: StableReserveContract,
+//     networkAddrs: {
+//         [Networks.smartBCH]: {
+//             bondAddress: "0x301fCF5A50a662EC941Ea836C019467DC265941c",
+//             reserveAddress: "0x56381cB87C8990971f3e9d948939e1a95eA113a3",
+//             oracleAddress: "0x92977982718E6B193ed2aB56865153C3bF053dF5",
+//             proTreasuryAddress: "0x7517943B4303D5F43Bfd97Fb07289376Ab73b6D4",
+//         },
+//     },
+// });
 
 export const proGobGbch = new ProBond({
     name: "gob-gbch-bond",
@@ -153,7 +153,7 @@ export const proWgbchGbch = new ProBond({
     reserveContractAbi: StableReserveContract,
     networkAddrs: {
         [Networks.smartBCH]: {
-            bondAddress: "0x0BC92185ef66f68f4fa8989766A915D298Ca178D",
+            bondAddress: "0xe176c137986A8de74ce47c048Ae276739dB2722A",
             reserveAddress: "0x009dC89aC501a62C4FaaF7196aeE90CF79B6fC7c",
             oracleAddress: "0xA0ce258356Aa1d4A914CD4B86f5E8CCca7903d67",
             proTreasuryAddress: "0x6e8e8102e0400F6C42EdD5AC920976DdC003A60b",
@@ -161,5 +161,44 @@ export const proWgbchGbch = new ProBond({
     },
 });
 
-//export default [fusdGob, proGbchFusd, proGbchGbch, proGbchGob, proGobGbch, proWgbchGbch];
-export default [fusdGob, proWgbchGbch];
+// Wrapper gBCH for GOB token
+export const prowGbchGob = new ProBond({
+    name: "gob-bond",
+    displayName: "GOB",
+    bondToken: "GOB",
+    payoutToken: "gBCH",
+    bondIconSvg: GobIcon,
+    bondContractABI: AmpleBond,
+    oracleContractABI: OracleContract,
+    reserveContractAbi: StableReserveContract,
+    networkAddrs: {
+        [Networks.smartBCH]: {
+            bondAddress: "0x82Ba8157C1f0BC0ce4d62f846E38e2a12Df82230",
+            reserveAddress: "0x56381cB87C8990971f3e9d948939e1a95eA113a3",
+            oracleAddress: "0x92977982718E6B193ed2aB56865153C3bF053dF5",
+            proTreasuryAddress: "0x6e8e8102e0400F6C42EdD5AC920976DdC003A60b",
+        },
+    },
+});
+
+export const prowGbchFusd = new ProBond({
+    name: "gbch_fusd-bond",
+    displayName: "FlexUSD",
+    bondToken: "flexUSD",
+    payoutToken: "gBCH",
+    bondIconSvg: FusdIcon,
+    bondContractABI: AmpleBond,
+    oracleContractABI: OracleContract,
+    reserveContractAbi: StableReserveContract,
+    networkAddrs: {
+        [Networks.smartBCH]: {
+            bondAddress: "0xA80a7D3B439fC77D0ff2D2CEe695AB60e67fE60e",
+            reserveAddress: "0x7b2B3C5308ab5b2a1d9a94d20D35CCDf61e05b72",
+            oracleAddress: "0xA0ce258356Aa1d4A914CD4B86f5E8CCca7903d67",
+            proTreasuryAddress: "0x6e8e8102e0400F6C42EdD5AC920976DdC003A60b",
+        },
+    },
+});
+
+// export default [fusdGob, proGbchFusd, proGbchGbch, proGobGbch, proWgbchGbch, prowGbchGob];
+export default [fusdGob, prowGbchGob, prowGbchFusd, proWgbchGbch, proGobGbch];
