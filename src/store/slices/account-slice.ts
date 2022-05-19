@@ -122,7 +122,7 @@ export const calculateUserBondDetails = createAsyncThunk("account/calculateUserB
             });
         });
     }
-
+    const bondName = bond.name.replace("r_", "");
     const bondContract = bond.getContractForBond(networkID, provider);
     const reserveContract = bond.getContractForReserve(networkID, provider);
 
@@ -131,17 +131,21 @@ export const calculateUserBondDetails = createAsyncThunk("account/calculateUserB
     const bondDetails = await bondContract.bondInfo(address);
 
     if (bond.isPro) {
-        let quote = 0;
-        if (bond.payoutToken === "gBCH") {
+        let quote = bondDetails.payout;
+        if (bond.payoutToken === "gBCH" && !bond.name.startsWith("r_")) {
             quote = await convertWrappertoUnder(bondDetails.payout, provider);
         }
-        if (bond.name === "gob-gbch-bond") {
+        if (bondName === "gob-gbch-bond") {
             interestDue = quote / Math.pow(10, 9);
         } else {
             interestDue = quote / Math.pow(10, 18);
         }
         bondMaturationBlock = Number(bondDetails.vesting) + Number(bondDetails.lastBlockTimestamp);
         pendingPayout = await bondContract.pendingPayoutFor(address);
+        // Converting Claimable Reward to Underlying
+        if (!bond.name.startsWith("r_")) {
+            pendingPayout = await convertWrappertoUnder(pendingPayout, provider);
+        }
     } else {
         interestDue = bondDetails.payout / Math.pow(10, 9);
         bondMaturationBlock = Number(bondDetails.vesting) + Number(bondDetails.lastTime);
@@ -154,7 +158,7 @@ export const calculateUserBondDetails = createAsyncThunk("account/calculateUserB
     allowance = await reserveContract.allowance(address, bond.getAddressForBond(networkID));
     balance = await reserveContract.balanceOf(address);
     let balanceVal: any = ethers.utils.formatEther(balance);
-    if (bond.name === "gob-bond") {
+    if (bondName === "gob-bond") {
         balanceVal = Number(balanceVal) * Math.pow(10, 9);
     }
 
@@ -163,7 +167,7 @@ export const calculateUserBondDetails = createAsyncThunk("account/calculateUserB
 
     let pendingPayoutVal: any = ethers.utils.formatUnits(pendingPayout, "gwei");
     if (bond.isPro) {
-        if (bond.name !== "gob-gbch-bond") {
+        if (bondName !== "gob-gbch-bond") {
             pendingPayoutVal = pendingPayoutVal / Math.pow(10, 9);
         }
     }

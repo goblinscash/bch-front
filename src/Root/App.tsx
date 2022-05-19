@@ -8,8 +8,9 @@ import { loadAccountDetails, calculateUserBondDetails, calculateUserTokenDetails
 import { IReduxState } from "../store/slices/state.interface";
 import Loading from "../components/Loader";
 import useBonds from "../hooks/bonds";
+import useRetiredBonds from "../hooks/retiredbonds";
 import ViewBase from "../components/ViewBase";
-import { Stake, Snowglobe, ChooseBond, Bond, Pool, Dashboard, NotFound } from "../views";
+import { Stake, Snowglobe, ChooseBond, Bond, ChooseRetiredBond, Pool, Dashboard, NotFound } from "../views";
 import "./style.scss";
 import useTokens from "../hooks/tokens";
 
@@ -24,6 +25,7 @@ function App() {
     const isAppLoaded = useSelector<IReduxState, boolean>(state => !Boolean(state.app.marketPrice));
 
     const { bonds } = useBonds();
+    const { retiredBonds } = useRetiredBonds();
     const { tokens } = useTokens();
 
     async function loadDetails(whichDetails: string) {
@@ -146,7 +148,9 @@ function App() {
                     })}
                     <ChooseBond />
                 </Route>
-
+                <Route path="/retired-bonds">
+                    <ChooseRetiredBond />
+                </Route>
                 <Route component={NotFound} />
             </Switch>
         </ViewBase>

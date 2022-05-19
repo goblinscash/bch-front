@@ -81,7 +81,12 @@ function NavContent() {
                             </Link>
                         ))}
                     </div>
-
+                    <Link component={NavLink} id="bond-nav" to="/retired-bonds" className="button-dapp-menu">
+                        <div className="dapp-menu-item">
+                            <img alt="" src={BondIcon} />
+                            <p>Retired Bonds</p>
+                        </div>
+                    </Link>
                     <Link
                         href="https://app.mistswap.fi/swap?inputCurrency=0x7b2B3C5308ab5b2a1d9a94d20D35CCDf61e05b72&outputCurrency=0x56381cB87C8990971f3e9d948939e1a95eA113a3"
                         target="_blank"

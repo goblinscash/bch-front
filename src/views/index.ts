@@ -1,5 +1,6 @@
 export { default as Bond } from "./Bond";
 export { default as ChooseBond } from "./ChooseBond";
+export { default as ChooseRetiredBond } from "./ChooseRetiredBond";
 export { default as Stake } from "./Stake";
 export { default as Pool } from "./Pool";
 export { default as Snowglobe } from "./Snowglobe";
