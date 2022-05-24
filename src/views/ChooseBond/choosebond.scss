@@ -250,6 +250,17 @@
   }
 }
 
+.retired-link {
+  color: #FFFFFF;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right:auto;
+  font-family: Montserrat;
+}
+.retired-link a {
+  color: #07fc1b;
+}
+
 @media screen and (max-width: 1240px) {
   .choose-bond-view{
     width: 100%;

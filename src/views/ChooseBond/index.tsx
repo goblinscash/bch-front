@@ -186,6 +186,9 @@ function ChooseBond() {
                                         </TableBody>
                                     </Table>
                                 </TableContainer>
+                                <div className="retired-link">
+                                    Don't see your bond? Check <a href="../#/retired-bonds">Retired Bonds</a>
+                                </div>
                             </Grid>
                         )}
                     </Paper>
@@ -194,6 +197,9 @@ function ChooseBond() {
                 {isSmallScreen && (
                     <Box className="choose-bond-view-card-container">
                         <Grid container item spacing={2}>
+                            <div className="retired-link">
+                                Don't see your bond? Check <a href="../#/retired-bonds">Retired Bonds</a>
+                            </div>
                             {bonds
                                 .filter(bond => bond.payoutToken === "gBCH")
                                 .map(bond => (
