@@ -133,7 +133,7 @@ export const calcBondDetails = createAsyncThunk("bonding/calcBondDetails", async
         if (bond.isPro) {
             const bondPriceHex = await bondContract.bondPrice();
             let quote = 0;
-            if (bond.name.startsWith("r_")) {
+            if (bond.name.startsWith("r_") || bond.name === "gob-gbch-bond") {
                 quote = bondPriceHex;
             } else {
                 quote = await convertUndertoWrapper(bondPriceHex, provider);
