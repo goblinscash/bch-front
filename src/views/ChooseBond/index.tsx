@@ -143,7 +143,7 @@ function ChooseBond() {
                                             currency: "USD",
                                             maximumFractionDigits: 0,
                                             minimumFractionDigits: 0,
-                                        }).format(treasuryProBalance)
+                                        }).format(treasuryProBalance + 5200) //5200 flex
                                     )}
                                 </div>
                             </Grid>
