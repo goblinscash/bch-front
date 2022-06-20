@@ -261,7 +261,7 @@ export const calcBondDetails = createAsyncThunk("bonding/calcBondDetails", async
     } else if (bondName === "gbch_fusd-bond") {
         let proTreasuryAddress = (bond as ProBond).getProTreasuryAddress(networkID);
         purchased = await token.balanceOf(proTreasuryAddress);
-        purchased = purchased / Math.pow(10, 18);
+        purchased = purchased / Math.pow(10, 18) + 5200;
     } else if (bond.isPro) {
         let proTreasuryAddress = (bond as ProBond).getProTreasuryAddress(networkID);
         purchased = await token.balanceOf(proTreasuryAddress);
