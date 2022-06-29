@@ -10,7 +10,8 @@ export const loadTokenPrices = async () => {
     const { data } = await axios.get(url);
 
     cache["BCH"] = data["bitcoin-cash"].usd;
-    cache["fUSD"] = data["flex-usd"].usd;
+    //cache["fUSD"] = data["flex-usd"].usd;
+    cache["fUSD"] = data["bitcoin-cash"].usd;
     cache["wBCH"] = data["bitcoin-cash"].usd;
     cache["gBCH"] = data["bitcoin-cash"].usd;
 };
