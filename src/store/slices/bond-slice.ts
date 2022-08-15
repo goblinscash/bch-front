@@ -125,6 +125,7 @@ export const calcBondDetails = createAsyncThunk("bonding/calcBondDetails", async
         // gbchBondRatio = mPrice.token0Price;
         // gbchMarketPrice = marketPrice / mPrice.token0Price;
         gbchMarketPrice = await getProbondMarketPrice(bond, networkID, provider);
+        gbchMarketPrice = gbchMarketPrice * fusdPrice;
     }
 
     const bondName = bond.name.replace("r_", "");
@@ -148,8 +149,9 @@ export const calcBondDetails = createAsyncThunk("bonding/calcBondDetails", async
             } else if (bondName === "gob-bond") {
                 // bondPrice = (bondPriceHex / 10000000) * fusdPrice;
                 bondPrice = (quote / 10000000) * marketPrice;
+            } else if (bondName === "gob-sidx-bond") {
+                bondPrice = (bondPriceHex / 1000000) * marketPrice;
             } else {
-                debugger;
                 bondPrice = (bondPriceHex / 10000000) * marketPrice;
             }
             if (bondName === "gob-gbch-bond") {

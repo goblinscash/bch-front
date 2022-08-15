@@ -14,6 +14,7 @@ export async function getMarketPrice(networkID: Networks, provider: ethers.Signe
 // get probond marketprice
 export async function getProbondMarketPrice(bond: Bond | null, networkID: Networks, provider: ethers.Signer | ethers.providers.Provider): Promise<number> {
     const bondAddress = "0xd45d971c09d966adbc7064e4ca05e2edaa3721c1"; //bond.getAddressForReserve(networkID);
+    // const bondAddress = "0x1326E072b412FDF591562807657D48300CA21b1F";
     const pairContract = new ethers.Contract(bondAddress, LpReserveContract, provider);
     const reserves = await pairContract.getReserves();
     const marketPrice = reserves[1] / reserves[0];

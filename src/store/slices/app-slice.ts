@@ -34,7 +34,7 @@ export const loadAppDetails = createAsyncThunk(
         // const mPrice = await getPairPrice();
         // let gbchBondRatio = mPrice.token0Price;
         // const gbchMarketPrice = marketPrice / mPrice.token0Price;
-        const gbchMarketPrice = await getProbondMarketPrice(null, networkID, provider);
+        const gbchMarketPrice = (await getProbondMarketPrice(null, networkID, provider)) * fusdPrice;
         const totalSupply = (await gobContract.totalSupply()) / Math.pow(10, 9);
         const circSupply = (await sgobContract.circulatingSupply()) / Math.pow(10, 9);
 
@@ -43,7 +43,7 @@ export const loadAppDetails = createAsyncThunk(
 
         const tokenBalPromises = allBonds.filter(b => !b.isPro).map(bond => bond.getTreasuryBalance(networkID, provider));
         const tokenBalances = await Promise.all(tokenBalPromises);
-        const treasuryBalance = tokenBalances.reduce((tokenBalance0, tokenBalance1) => tokenBalance0 + tokenBalance1) + 200000; //add static 200000 for mist farm
+        const treasuryBalance = tokenBalances.length > 0 ? tokenBalances.reduce((tokenBalance0, tokenBalance1) => tokenBalance0 + tokenBalance1) + 200000 : 0; //add static 200000 for mist farm
 
         const tokenProBalPromises = allBonds
             .filter(b => b.isPro)

@@ -8,6 +8,7 @@ import FusdGobIcon from "../../assets/tokens/GOB-FLEX.png";
 import BchGobIcon from "../../assets/tokens/GOB-BCH.png";
 import GobIcon from "../../assets/tokens/GOB.png";
 import GbchIcon from "../../assets/tokens/GBCH.png";
+import GobSidxIcon from "../../assets/tokens/GOB-SIDX.png";
 // import tokens from '../../helpers/tokens';
 
 import { StableBondContract, LpBondContract, WbchBondContract, StableReserveContract, LpReserveContract, TimeReserveContract, AmpleBond, OracleContract } from "../../abi";
@@ -200,5 +201,25 @@ export const prowGbchFusd = new ProBond({
     },
 });
 
+export const proGobSidx = new ProBond({
+    name: "gob-sidx-bond",
+    displayName: "GOB-SIDX",
+    bondToken: "SIDX",
+    payoutToken: "GOB",
+    bondIconSvg: GobSidxIcon,
+    bondContractABI: AmpleBond,
+    oracleContractABI: OracleContract,
+    reserveContractAbi: StableReserveContract,
+    networkAddrs: {
+        [Networks.smartBCH]: {
+            bondAddress: "0x0987d69C75cc92Ccc4010A0262168a817A522dd0",
+            reserveAddress: "0xb706a74c30e86f9c4a3ef604c313bd1670bca149",
+            oracleAddress: "0x92977982718E6B193ed2aB56865153C3bF053dF5",
+            proTreasuryAddress: "0x5d51B1aC5DaE47c4Eede9b79223B8b4E1D3B9f74",
+        },
+    },
+});
+
 // export default [fusdGob, proGbchFusd, proGbchGbch, proGobGbch, proWgbchGbch, prowGbchGob];
 export default [fusdGob, prowGbchGob, prowGbchFusd, proWgbchGbch, proGobGbch];
+// export default [prowGbchGob, proGobSidx];
