@@ -61,3 +61,4 @@ node_modules/i18next/dist/esm/i18next.js
 node_modules/i18next/dist/esm/package.json
 node_modules/i18next/dist/umd/i18next.js
 node_modules/i18next/dist/umd/i18next.min.js
+.eslintrc
