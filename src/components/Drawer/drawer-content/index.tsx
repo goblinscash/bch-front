@@ -99,7 +99,7 @@ function NavContent() {
                         </div>
                     </Link>
 
-                    <Link href="https://sideshift.ai/eth/smartbch" target="_blank">
+                    <Link href="https://blockng.money/#/bridge" target="_blank">
                         <div className="button-dapp-menu">
                             <div className="dapp-menu-item">
                                 <img alt="" src={BorrowIcon} />
